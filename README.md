@@ -12,5 +12,5 @@ Auslesen eines 6 Achsen- Gyroskops bzw. Beschleunigungssensors, wie z.B. MPU 605
 - STK500
 - Display
 
-## Recources
+## Resources
 - Sensor fusion: https://www.youtube.com/watch?v=6qV3YjFppuc&list=PLn8PRpmsu08ryYoBpEKzoMOveSTyS-h4a&index=2
