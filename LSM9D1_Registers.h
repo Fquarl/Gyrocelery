@@ -1,6 +1,10 @@
 #ifndef __LSM9DS1_Registers_H__
 #define __LSM9DS1_Registers_H__
 
+// Default addresses
+#define ACELGYRO_ADR    0b1101010
+#define MAGNETO_ADR     0b0011100
+
 // Gyro, Acc Registers
 #define ACT_THS             0x04
 #define ACT_DUR             0x05
