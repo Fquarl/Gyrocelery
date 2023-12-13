@@ -30,9 +30,25 @@ public:
 
 private:
     /**
+     *  \fn         sendBytesAsNibbles
+     *  \brief      The method write the byte as two seperate nibbles
+     *  \param[in]  byte passes the byte to send of type uint8_t
+     */
+    void sendByteAsNibbles(const uint8_t &byte) const;
+
+    /**
      *  \fn         writeByte
      *  \brief      The method writes a byte to the display driver
-     *  \param[in]  byte passes the byte to send of type char
+     *  \param[in]  byte passes the byte to send of type uint8_t
+     *  \note       The method should not be used for direct communication!
+     *  \see        sendByteAsNibbles
      */
-    void writeByte(const uint8_t &str) const;
+    void writeByte(const uint8_t &byte) const;
+
+    /**
+     *  \var    _i2cAddress
+     *  \brief  The member stores the displays I2C address
+     *  \value  0x28
+     */
+    const uint8_t _i2cAddress = 0x28;
 };
