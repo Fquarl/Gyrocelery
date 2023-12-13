@@ -21,9 +21,9 @@ void i2c_writeByte(int _byte);
 int i2c_readByte(bool continueTransfer = false);
 
 int i2c_writeWord(int address, int peripheralRegister, int data);
-int i2c_readWord(int address, int peripheralRegister, char* data);
+int i2c_readWord(int address, int peripheralRegister, char *data);
 
-int i2c_readDWord(int address, int peripheralRegister, int* data);
-int i2c_readNDwords(int address, int startRegister, int* dataArray, int len);
+int i2c_readDWord(int address, int peripheralRegister, int *data);
+int i2c_readNDwords(int address, int startRegister, int *dataArray, int len);
 
 #endif
