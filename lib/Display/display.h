@@ -5,3 +5,16 @@
  *  \brief  Declaration of led display functionality
  *  \see    display.cpp
  */
+
+/**
+ *  \class  Display
+ *  \brief  The class represents the projects LCD display
+ */
+class Display
+{
+public:
+    /**
+     *  \brief  The constructor intializes the display instance
+     */
+    Display(void);
+};

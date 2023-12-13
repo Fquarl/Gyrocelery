@@ -5,3 +5,10 @@
  *  \brief  Implementation of led display functionality
  *  \see    display.h
  */
+
+#include "display.h"
+
+Display::Display(void)
+{
+    // Initialize the lcd display
+}
