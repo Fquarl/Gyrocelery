@@ -6,6 +6,9 @@
  *  \see    display.cpp
  */
 
+#ifndef __DISPLAY_H__
+#define __DISPLAY_H__
+
 #include <stdint.h>
 
 /**
@@ -122,3 +125,5 @@ private:
      */
     bool backlightEnabled = false;
 };
+
+#endif //__DISPLAY_H__
