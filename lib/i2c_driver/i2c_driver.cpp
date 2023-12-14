@@ -44,6 +44,7 @@ void i2c_sendAddressRead(const int address)
 void i2c_stopCondition()
 {
     TWCR= (1<<TWINT)|(1<<TWEN)|(1<<TWSTO);  // Setzt TWI interrupt flag zurueck, legt Stoppbedingung an SDA, Enable TWI
+    while((TWCR & (1<<TWSTO))); 
 }
 
 void i2c_sendData(int data)
