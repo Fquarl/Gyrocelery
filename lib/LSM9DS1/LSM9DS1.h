@@ -45,7 +45,8 @@ class LSM9DS1{
     void getGyroData(double* dataArray);
     void getAccelDataRaw(int* dataArray);
     void getAccelData(double* dataArray);
-    double getTotalAccel();
+    double getTotalAccel(double* existingData = nullptr);
+    void getSphericAccel(double* coords);
 
   private:
     int accelGyroAddr;

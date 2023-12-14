@@ -73,12 +73,25 @@ void LSM9DS1::getAccelData(double* dataArray) {
   }
 }
 
-double LSM9DS1::getTotalAccel() {
-  double accelData[3];
-  getAccelData(accelData);
+double LSM9DS1::getTotalAccel(double* existingData) {
+  double* accelData;
+  if(existingData) {
+    accelData = existingData;
+  } else {
+    getAccelData(accelData);
+  }
+  
   double totalAccel = accelData[0] * accelData[0] +
                       accelData[1] * accelData[1] + 
                       accelData[2] * accelData[2];
   totalAccel = sqrt(totalAccel);
   return totalAccel; 
+}
+
+void LSM9DS1::getSphericAccel(double* coords) {
+  double* accelData;
+  getAccelData(accelData);
+  coords[0] = getTotalAccel(accelData);
+  coords[1] = acos(accelData[2] / coords[0]);
+  coords[2] = atan2(accelData[1], accelData[0]);
 }
