@@ -74,10 +74,13 @@ void LSM9DS1::getAccelData(double* dataArray) {
 }
 
 double LSM9DS1::getTotalAccel(double* existingData) {
-  double* accelData;
+  double data[3] = {0, 0, 0};
+  double* accelData = data;
+
   if(existingData) {
     accelData = existingData;
   } else {
+
     getAccelData(accelData);
   }
   
