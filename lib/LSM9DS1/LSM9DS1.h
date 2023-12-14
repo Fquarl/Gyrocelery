@@ -4,14 +4,6 @@
 #include <Arduino.h>
 #include "LSM9DS1_Registers.h"
 
-#define ODR_OFF 0b000
-#define ODR_14  0b001
-#define ODR_59  0b010
-#define ODR_119 0b011
-#define ODR_238 0b100
-#define ODR_476 0b101
-#define ODR_952 0b110
-
 #define MaxInt 0x7FFF
 
 class AccelPrescale {
@@ -51,6 +43,9 @@ class LSM9DS1{
     void setGyroPrescale(const int scaler);  // done
     void getGyroDataRaw(int* dataArray);
     void getGyroData(double* dataArray);
+    void getAccelDataRaw(int* dataArray);
+    void getAccelData(double* dataArray);
+    double getTotalAccel();
 
   private:
     int accelGyroAddr;
