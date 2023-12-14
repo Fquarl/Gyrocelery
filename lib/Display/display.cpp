@@ -20,7 +20,7 @@ Display::Display(void)
 void Display::print(const char *str) const
 {
     // Print a c string of undefined length
-    const uint8_t arrayLength = sizeof(str) / sizeof(uint8_t);
+    const uint8_t arrayLength = sizeof(str) / sizeof(char);
     for (uint8_t i = 0; i < arrayLength; i++)
     {
         constexpr uint8_t writeModeFlag = 0x01;
