@@ -20,6 +20,7 @@ Auslesen eines 6 Achsen- Gyroskops bzw. Beschleunigungssensors, wie z.B. MPU 605
 The intended use of the display is as follows:
 
 ```C++
+#include <util/delay.h>
 #include <Display/display.h>
 
 int main(void)
@@ -31,6 +32,7 @@ int main(void)
     {
         const Page page("Hello, World!\n How are you?");
         display.show(page);
+        _delay_ms(1000);
     }
 
     return 0;
