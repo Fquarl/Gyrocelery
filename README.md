@@ -29,9 +29,8 @@ int main(void)
 
     for (;;)
     {
-        // Get data and write it into following variable
-        uint8_t data;
-        display.print(data);
+        const Page page("Hello, World!\n How are you?");
+        display.show(page);
     }
 
     return 0;
