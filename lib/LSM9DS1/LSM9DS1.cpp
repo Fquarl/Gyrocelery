@@ -95,3 +95,11 @@ void LSM9DS1::getSphericAccel(double* coords) {
   coords[1] = acos(accelData[2] / coords[0]);
   coords[2] = atan2(accelData[1], accelData[0]);
 }
+
+void LSM9DS1::enableFIFO() {
+  byte currentSetting;
+  int status = i2c_readWord(accelGyroAddr, CTRL_REG9, &currentSetting); // Muss der Rückgabewert der funktion gelesen werden?
+  int ctrlRegSetting = currentSetting | 0b00000010;
+  i2c_writeWord(accelGyroAddr, CTRL_REG9, ctrlRegSetting);
+  int fifoCtrlSetting = 0b11111111; // 32 byte werden pro Richtung gespeichert
+}

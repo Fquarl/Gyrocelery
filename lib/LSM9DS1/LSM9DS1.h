@@ -45,10 +45,15 @@ class LSM9DS1{
     void getGyroData(double* dataArray);
     void getAccelDataRaw(int* dataArray);
     void getAccelData(double* dataArray);
-    double getTotalAccel(double* existingData = nullptr);
-    void getSphericAccel(double* coords);
+    double getTotalAccel();
 
   private:
+      /**
+     *  \fn         enableFIFI
+     *  \brief      Enables FIFO in the Gyro
+     */
+    void enableFIFO();
+
     int accelGyroAddr;
     int magnetoAddr;
     int accelPrescale = 2;
