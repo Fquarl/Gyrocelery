@@ -14,3 +14,26 @@ Auslesen eines 6 Achsen- Gyroskops bzw. Beschleunigungssensors, wie z.B. MPU 605
 
 ## Resources
 - Sensor fusion: https://www.youtube.com/watch?v=6qV3YjFppuc&list=PLn8PRpmsu08ryYoBpEKzoMOveSTyS-h4a&index=2
+
+## Display usage
+
+The intended use of the display is as follows:
+
+```C++
+#include <Display/display.h>
+
+int main(void)
+{
+    constexpr uint8_t displayI2CAddress = 0x28;
+    Display display(displayI2CAddress);
+
+    for (;;)
+    {
+        // Get data and write it into following variable
+        uint8_t data;
+        display.print(data);
+    }
+
+    return 0;
+}
+```
