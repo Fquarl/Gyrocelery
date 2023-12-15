@@ -11,9 +11,11 @@
 #include <util/delay.h>
 #include "../i2c_driver.h"
 
-/*  Implementations  */
-
 Display::Display(void)
+{
+}
+
+void Display::show(const Page& page) const
 {
 }
 
