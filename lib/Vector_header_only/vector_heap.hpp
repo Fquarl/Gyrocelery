@@ -27,22 +27,28 @@ namespace VECTOR_HEAP
     constexpr uin16_t totalLenghtOfSRAM = 0x800;
 
     /**
-     *  \var        __malloc_margin
+     *  \var        mallocMargin
      *  \brief      The constant specifies the minimum margin between stack and heap
      *  \note       The margin can be undercut if the stack grows after heap expansion!
      *  \ingroup    HeapSettings
      *  \value      The default value is set to 64 byte.
      */
-    __malloc_margin = 64;
+    constexpr size_t &mallocMargin = __malloc_margin;
+    mallocMargin = 64;
 
     /**
-     *  \var        __malloc_heap_end
-     *  \brief      The constant specifies the end of the heap
-     *  \note       Due to stack-heap-collision, only 0x80 bytes can be allocated!
+     *  \var        mallocHeapStart
+     *  \brief      The constant specifies the start of the heap
      *  \ingroup    HeapSettings
-     *  \value      The heap length is set to 10% of the total length of SRAM
      */
-    __malloc_heap_end = __malloc_heap_start + totalLenghtOfSRAM / 10;
+    constexpr char *&mallocHeapStart = __malloc_heap_start;
+
+    /**
+     *  \var        mallocHeapEnd
+     *  \brief      The constant specifies the end of the heap
+     *  \ingroup    HeapSettings
+     */
+    constexpr char *&mallocHeapEnd = __malloc_heap_end;
 
     /**
      *  \fn         new
