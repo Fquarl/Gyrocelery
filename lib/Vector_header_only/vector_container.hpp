@@ -49,13 +49,11 @@ public:
     {
         uint8_t loopIterations = 0;
         VectorElement<ContentType> *nextElement = _headOfStack;
-
         while (nextElement)
         {
             nextElement = nextElement->getNextElement();
             loopIterations++;
         }
-
         return loopIterations;
     }
 
@@ -71,6 +69,21 @@ public:
         return targetElement->getContent();
     }
 
+    /**
+     *  \fn         deleteAll
+     *  \brief      The method deletes all elements in the linked list
+     */
+    void deleteAll(void) const
+    {
+        const uint8_t elementCount = length();
+        for (uint8_t i = 0; i < elementCount; i++)
+        {
+            VectorElement* elementPointer = elementAt(i);
+            delete elementPointer;
+        }
+        _headOfStack = nullptr;
+    }
+
 private:
     /**
      *  \fn         elementAt
@@ -82,12 +95,10 @@ private:
     {
         const uint8_t itertaionsFromTop = length() - index;
         VectorElement<ContentType> *elementPointer = _headOfStack;
-
         for (uint8_t i = 0; i < itertaionsFromTop; i++)
         {
             elementPointer = elementPointer->getNextElement();
         }
-
         return elementPointer;
     }
 
