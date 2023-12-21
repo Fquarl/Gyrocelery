@@ -17,20 +17,4 @@ class Vector : public VectorContainer<T>
 {
 };
 
-/**
- *  \class  VectorContainer
- *  \brief  Container for multiple characters representing a string
- */
-class String : public Vector<char>
-{
-};
-
-/**
- *  \class  StringList
- *  \brief  Container for multiple strings forming a list of strings
- */
-class StringList : public Vector<String>
-{
-};
-
 #endif //__VECTOR_HPP__
