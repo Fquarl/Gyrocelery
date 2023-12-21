@@ -48,6 +48,7 @@ namespace VECTOR_HEAP
      *  \fn         new
      *  \brief      The function creates a new instance on the heap
      *  \param[in]  size passes the size of the new instance in bytes
+     *  \note       The function might return nullptr to avoid heap and stack colliding!
      */
     void *operator new(size_t size)
     {
