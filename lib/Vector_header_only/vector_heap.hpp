@@ -51,6 +51,26 @@ namespace VECTOR_HEAP
     constexpr char*& mallocHeapEnd = __malloc_heap_end;
 
     /**
+     *  \var        mallocHeapEnd
+     *  \brief      The constant defines the maximum size of the heap
+     *  \ingroup    HeapSettings
+     *  \value      0x100
+     */
+    constexpr size_t maxHeapSize = 0x100;
+
+    /**
+     *  \fn         validateNewAllocation
+     *  \brief      The function validates if a new instance can be created on heap
+     *  \param[in]  sizeToAllocate passes the necessary size in bytes
+     *  \return     A boolean whether the instance can be created or not
+    */
+    bool validateNewAllocation(const size_t& sizeToAllocate)
+    {
+        const size_t currentHeapSize = static_cast<size_t>(mallocHeapEnd - mallocHeapStart);
+        return (maxHeapSize <= (currentHeapSize + sizeToAllocate));
+    }
+
+    /**
      *  \fn         new
      *  \brief      The function creates a new instance on the heap
      *  \param[in]  size passes the size of the new instance in bytes
@@ -58,7 +78,11 @@ namespace VECTOR_HEAP
      */
     void* operator new(size_t size)
     {
-        return malloc(size);
+        if (validateNewAllocation(size))
+        {
+            return malloc(size);
+        }
+        return nullptr;
     }
 
     /**
