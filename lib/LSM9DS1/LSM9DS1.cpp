@@ -1,5 +1,5 @@
 #include "LSM9DS1.h"
-#include <i2c_driver.h>
+#include <i2c_driver/i2c_driver.h>
 
 LSM9DS1::LSM9DS1(const int accelGyro, const int magneto):
   accelGyroAddr(accelGyro), magnetoAddr(magneto)
@@ -96,10 +96,16 @@ void LSM9DS1::getSphericAccel(double* coords) {
   coords[2] = atan2(accelData[1], accelData[0]);
 }
 
-void LSM9DS1::enableFIFO() {
+void LSM9DS1::enableFIFO(void) {
   byte currentSetting;
   int status = i2c_readWord(accelGyroAddr, CTRL_REG9, &currentSetting); // Muss der Rückgabewert der funktion gelesen werden?
   int ctrlRegSetting = currentSetting | 0b00000010;
   i2c_writeWord(accelGyroAddr, CTRL_REG9, ctrlRegSetting);
-  int fifoCtrlSetting = 0b11111111; // 32 byte werden pro Richtung gespeichert
+
+  int fifoCtrlSetting = ((fifoMode << 5) |  fifoThreshholdSize);
+  i2c_writeWord(accelGyroAddr, FIFO_CTRL, fifoCtrlSetting);
+}
+
+void LSM9DS1::setFifoInterrupt(void) {
+
 }

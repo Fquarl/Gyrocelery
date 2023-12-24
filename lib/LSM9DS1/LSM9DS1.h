@@ -113,13 +113,17 @@ class LSM9DS1{
      */
     double getTotalAccel(double* existingData = nullptr);
     void getSphericAccel(double* coords);
+    void setFifoInterrupt(void);
+    void enableFIFO(void);
 
   private:
     int accelGyroAddr;
     int magnetoAddr;
     int accelPrescale = 2;
     int gyroPrescale = 245;
-    int currentODR; 
+    int currentODR;
+    int fifoMode = 0b110; // 0b110 Continous Mode 0b001 FIFO mode
+    int fifoThreshholdSize = 0b11111; // 32 samples werden pro Achse gespeichert
 };
 
 
