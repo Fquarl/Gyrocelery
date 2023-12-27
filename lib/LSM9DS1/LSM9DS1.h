@@ -113,8 +113,17 @@ class LSM9DS1{
      */
     double getTotalAccel(double* existingData = nullptr);
     void getSphericAccel(double* coords);
+    /**
+     *  \fn         setFifoInterrupt
+     *  \brief      This method enables the "FIFO threshhold reached" interrupt
+     */
     void setFifoInterrupt(void);
+        /**
+     *  \fn         enableFIFO
+     *  \brief      This method sets the FIFO mode to the "continous mode", as new data arrives the older is discarded.
+     */
     void enableFIFO(void);
+    void readFifo(double* gyroData, int* accelData);
 
   private:
     int accelGyroAddr;
