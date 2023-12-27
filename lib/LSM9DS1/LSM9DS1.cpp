@@ -6,6 +6,15 @@ LSM9DS1::LSM9DS1(const int accelGyro, const int magneto):
   {
 }
 
+struct storedGyroData {
+  int* xAccel;
+  int* yAccel;
+  int* zAccel;
+  double* yaw;
+  double* roll;
+  double* pitch;
+}
+
 void LSM9DS1::setAccelPrescale(const int scaler) {
   accelPrescale = AccelPrescale::factors[scaler];
   byte currentRegister;
@@ -99,7 +108,7 @@ void LSM9DS1::getSphericAccel(double* coords) {
 void LSM9DS1::enableFIFO(void) {
   char currentSetting;
   int status = i2c_readWord(accelGyroAddr, CTRL_REG9, &currentSetting); // Muss der Rückgabewert der funktion gelesen werden?
-  int ctrlRegSetting = (currentSetting | 0b00000010);
+  int ctrlRegSetting = (currentSetting | 0b00000010);                   // Enable FIFO in CTRL Register
   i2c_writeWord(accelGyroAddr, CTRL_REG9, ctrlRegSetting);
 
   int fifoCtrlSetting = ((fifoMode << 5) |  fifoThreshholdSize);
@@ -109,6 +118,19 @@ void LSM9DS1::enableFIFO(void) {
 void LSM9DS1::setFifoInterrupt(void) {
   char currentSetting;
   int status = i2c_readWord(accelGyroAddr, INT1_CTRL, &currentSetting); // Muss der Rückgabewert der funktion gelesen werden?
-  int interruptRegSetting = (currentSetting | 0b00001000);                     //FIFO threshold interrupt on INT 1_A/G pin. Default value: 0
+  int interruptRegSetting = (currentSetting | 0b00001000);              //FIFO threshold interrupt on INT 1_A/G pin. Default value: 0
   i2c_writeWord(accelGyroAddr, INT1_CTRL, interruptRegSetting);
+}
+
+void LSM9DS1::readFifo(storedGyroData* data) {
+  int numberOfSamples;
+  storedGyroData* gyroData = new storedGyroData;
+  i2c_readWord(accelGyroAddr, FIFO_SRC, &numberOfSamples);
+  numberOfSamples = (numberOfSamples & 0x3F);
+  for (int i = 0; i < numberOfSamples; i++)
+  { // Read the gyro data stored in the FIFO
+  int dataArray[2];               // Das ist Müll, sollte geändert werden, Größe des gelesenen Arrays muss überprüft werden
+    i2c_readNDwords(accelGyroAddr, OUT_X_L_XL, dataArray, 2);
+    storedGyroData.xAccel[i] = (int16_t)(((int16_t)data[1] << 8) | dataArray[0]); // Form signed 16-bit integer for each sample in FIFO
+  }
 }

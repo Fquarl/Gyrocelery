@@ -126,6 +126,7 @@ class LSM9DS1{
     void readFifo(double* gyroData, int* accelData);
 
   private:
+    typedef struct storedGyroData; 
     int accelGyroAddr;
     int magnetoAddr;
     int accelPrescale = 2;
