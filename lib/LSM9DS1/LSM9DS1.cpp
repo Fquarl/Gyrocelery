@@ -97,15 +97,18 @@ void LSM9DS1::getSphericAccel(double* coords) {
 }
 
 void LSM9DS1::enableFIFO(void) {
-  byte currentSetting;
+  char currentSetting;
   int status = i2c_readWord(accelGyroAddr, CTRL_REG9, &currentSetting); // Muss der Rückgabewert der funktion gelesen werden?
-  int ctrlRegSetting = currentSetting | 0b00000010;
+  int ctrlRegSetting = (currentSetting | 0b00000010);
   i2c_writeWord(accelGyroAddr, CTRL_REG9, ctrlRegSetting);
 
   int fifoCtrlSetting = ((fifoMode << 5) |  fifoThreshholdSize);
-  i2c_writeWord(accelGyroAddr, FIFO_CTRL, fifoCtrlSetting);
+  i2c_writeWord(accelGyroAddr, FIFO_CTRL, fifoCtrlRegSetting);
 }
 
 void LSM9DS1::setFifoInterrupt(void) {
-
+  char currentSetting;
+  int status = i2c_readWord(accelGyroAddr, INT1_CTRL, &currentSetting); // Muss der Rückgabewert der funktion gelesen werden?
+  int interruptRegSetting = (currentSetting | 0b00001000);                     //FIFO threshold interrupt on INT 1_A/G pin. Default value: 0
+  i2c_writeWord(accelGyroAddr, INT1_CTRL, interruptRegSetting);
 }
