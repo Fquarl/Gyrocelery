@@ -1,6 +1,9 @@
 #include "LSM9DS1.h"
 #include <i2c_driver/i2c_driver.h>
 
+AccelPrescale::factors = {2, 16, 4, 8};
+GyroPrescale::factors =  = {245, 500, 0, 2000};
+
 LSM9DS1::LSM9DS1(const int accelGyro, const int magneto):
   accelGyroAddr(accelGyro), magnetoAddr(magneto)
   {
