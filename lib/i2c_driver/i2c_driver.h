@@ -4,7 +4,6 @@
 #ifndef I2C_DRIVER_H
 #define I2C_DIVER_H
 
-#include <Arduino.h>
     /**
      *  \fn         i2c_init
      *  \brief      This method initializes the i2c bus. Not register values are calculated
