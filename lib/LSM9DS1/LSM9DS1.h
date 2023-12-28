@@ -27,7 +27,7 @@ class GyroPrescale {
     static const int prescale245dps = 0b00;
     static const int prescale500dps = 0b01;
     static const int prescale2000dps = 0b11;
-    static int factors[4];
+    static const int factors[4];
 };
 
 /**
@@ -106,12 +106,13 @@ class LSM9DS1{
     void getAccelData(double* dataArray);
      /**
      *  \fn         getTotalAccel
-     *  \brief      The method calculates the total acceleration meassured as g-value.
+     *  \brief      Broken! The method calculates the total acceleration meassured as g-value.
      *  \param[in]  An optional double-Array containing the acceleration data. If no data is provided, current data will be read from the device.
      *  \returns    The total acceleration  as g-value.
      */
     double getTotalAccel(double* existingData = 0);
-    void getSphericAccel(double* coords);
+    
+    // void getSphericAccel(double* coords);
     /**
      *  \fn         setFifoInterrupt
      *  \brief      This method enables the "FIFO threshhold reached" interrupt

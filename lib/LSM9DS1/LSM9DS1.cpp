@@ -1,8 +1,8 @@
 #include "LSM9DS1.h"
-#include <i2c_driver/i2c_driver.h>
+#include "../i2c_driver/i2c_driver.h"
 
-AccelPrescale::factors = {2, 16, 4, 8};
-GyroPrescale::factors =  = {245, 500, 0, 2000};
+const int AccelPrescale::factors[4] = {2, 16, 4, 8};
+const int GyroPrescale::factors[4] = {245, 500, 0, 2000};
 
 LSM9DS1::LSM9DS1(const int accelGyro, const int magneto):
   accelGyroAddr(accelGyro), magnetoAddr(magneto)
@@ -16,11 +16,11 @@ struct storedGyroData {
   double* yaw;
   double* roll;
   double* pitch;
-}
+};
 
 void LSM9DS1::setAccelPrescale(const int scaler) {
   accelPrescale = AccelPrescale::factors[scaler];
-  byte currentRegister;
+  char currentRegister;
   int status = i2c_readWord(accelGyroAddr, CTRL_REG6_XL, &currentRegister);
   currentRegister = currentRegister & 0b11100111;
   currentRegister = currentRegister | (scaler << 3);
@@ -29,7 +29,7 @@ void LSM9DS1::setAccelPrescale(const int scaler) {
 
 void LSM9DS1::setGyroPrescale(const int scaler) {
   gyroPrescale = GyroPrescale::factors[scaler];
-  byte currentRegister;
+  char currentRegister;
   int status = i2c_readWord(accelGyroAddr, CTRL_REG1_G, &currentRegister);
   
   currentRegister = currentRegister & 0b11100111;
@@ -45,12 +45,12 @@ void LSM9DS1::softreset() {
 
 void LSM9DS1::setODR(const int ODR) {
   currentODR = ODR;
-  byte lastStatus;
+  char lastStatus;
   int status = i2c_readWord(accelGyroAddr, CTRL_REG1_G, &lastStatus);
   
   
   if(status != 0x40) return;
-  byte newRegister = lastStatus & 0b00011111;
+  char newRegister = lastStatus & 0b00011111;
   newRegister = newRegister | ODR << 5;
   
   
@@ -99,10 +99,11 @@ double LSM9DS1::getTotalAccel(double* existingData) {
   double totalAccel = accelData[0] * accelData[0] +
                       accelData[1] * accelData[1] + 
                       accelData[2] * accelData[2];
-  totalAccel = sqrt(totalAccel);
+  // totalAccel = sqrt(totalAccel);
   return totalAccel; 
 }
 
+/*
 void LSM9DS1::getSphericAccel(double* coords) {
   double* accelData;
   getAccelData(accelData);
@@ -110,6 +111,7 @@ void LSM9DS1::getSphericAccel(double* coords) {
   coords[1] = acos(accelData[2] / coords[0]);
   coords[2] = atan2(accelData[1], accelData[0]);
 }
+*/
 
 void LSM9DS1::enableFIFO(void) {
   char currentSetting;
