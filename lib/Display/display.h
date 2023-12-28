@@ -10,6 +10,7 @@
 #define __DISPLAY_H__
 
 #include <stdint.h>
+#include <page.h>
 
 /**
  *  \class  Display
@@ -24,6 +25,15 @@ public:
     Display(void);
 
     /**
+     *  \fn         show
+     *  \brief      The method shows a page on the display
+     *  \param[in]  page passes the page to display
+     *  \see        Page
+     */
+    void show(const Page& page) const;
+
+private:
+    /**
      *  \fn         print
      *  \brief      The method prints a C string onto the lcd display
      *  \param[in]  str passes the characters as a pointer to a C array
@@ -31,7 +41,6 @@ public:
      */
     void print(const char *str) const;
 
-private:
     /**
      *  \fn         send
      *  \brief      The method write the byte as two seperate nibbles
