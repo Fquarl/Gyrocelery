@@ -31,6 +31,13 @@
 # To rebuild project do "make clean" then "make all".
 #
 
+# ATMEGA FUSE CALCULATOR
+# http://eleccelerator.com/fusecalc/fusecalc.php?chip=atmega32
+
+# RAW avrdude command
+# sudo avrdude -c stk500v2 -p m32 -P /dev/ttyUSB0 -U lfuse:r:/dev/stdout:b
+
+
 # mth 2004/09 
 # Differences from WinAVR 20040720 sample:
 # - DEPFLAGS according to Eric Weddingtion's fix (avrfreaks/gcc-forum)
