@@ -120,6 +120,8 @@ CFLAGS += $(patsubst %,-I%,$(EXTRAINCDIRS))
 CFLAGS += $(CSTANDARD)
 CFLAGS += -DF_OSC=$(F_OSC)
 
+CPPFLAGS += -std=gnu++11
+
 
 
 # Assembler flags.
