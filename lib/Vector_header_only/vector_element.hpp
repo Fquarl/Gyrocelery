@@ -23,7 +23,7 @@ public:
      *  \param[in]  content passes the instance to store
      *  \param[in]  nextElement passes the next element to store
      */
-    VectorElement(const ContentType content, const VectorElement *nextElement) : _content(content), _nextElement(nextElement)
+    VectorElement(const ContentType content, VectorElement *nextElement) : _content(content), _nextElement(nextElement)
     {
     }
 

@@ -45,7 +45,7 @@ public:
      *  \brief  The method calcualtes the length of the linked list
      *  \return Count of elements contained by the linked list
      */
-    void length(void) const
+    uint8_t length(void) const
     {
         uint8_t loopIterations = 0;
         VectorElement<ContentType> *nextElement = _headOfStack;
@@ -78,7 +78,7 @@ public:
         const uint8_t elementCount = length();
         for (uint8_t i = 0; i < elementCount; i++)
         {
-            VectorElement* elementPointer = elementAt(i);
+            VectorElement *elementPointer = elementAt(i);
             delete elementPointer;
         }
         _headOfStack = nullptr;
@@ -93,7 +93,7 @@ private:
      */
     VectorElement *elementAt(const uint8_t &index) const
     {
-        const uint8_t itertaionsFromTop = length() - index;
+        const uint8_t itertaionsFromTop = length() - index - 1;
         VectorElement<ContentType> *elementPointer = _headOfStack;
         for (uint8_t i = 0; i < itertaionsFromTop; i++)
         {
