@@ -105,7 +105,7 @@ void LSM9DS1::getSphericAccel(double* coords) {
 }
 */
 
-void LSM9DS1::enableFIFO(void) {
+void LSM9DS1::enableFifo(void) {
   char currentSetting;
   int status = i2c_readWord(accelGyroAddr, CTRL_REG9, &currentSetting); // Muss der Rückgabewert der funktion gelesen werden?
   int ctrlRegSetting = (currentSetting | 0b00000010);                   // Enable FIFO in CTRL Register
@@ -122,21 +122,25 @@ void LSM9DS1::setFifoInterrupt(void) {
   i2c_writeWord(accelGyroAddr, INT1_CTRL, interruptRegSetting);
 }
 
-void LSM9DS1::readFifo(storedGyroData* data) {
+void LSM9DS1::readFifo(void) {
   char numberOfSamples;
   i2c_readWord(accelGyroAddr, FIFO_SRC, &numberOfSamples);
   numberOfSamples = (numberOfSamples & 0x3F);
   for (int i = 0; i < numberOfSamples; i++)                             // Read the gyro data stored in the FIFO
   { 
-    int accelDataArray[3];
-    i2c_readNDwords(accelGyroAddr, OUT_X_L_XL, accelDataArray, 3);
-    data->xAccel[i] = accelDataArray[0];
-    data->yAccel[i] = accelDataArray[1];
-    data->zAccel[i] = accelDataArray[2];
-    int gyroDataArray[3];
-    i2c_readNDwords(accelGyroAddr, OUT_X_L_G, gyroDataArray, 3);
-    data->roll[i] = gyroDataArray[0];
-    data->pitch[i] = gyroDataArray[1];
-    data->yaw[i] = gyroDataArray[2];
+    double accelDataArray[3];
+    getAccelData(accelDataArray);
+    storedFifoData->xAccel[i] = accelDataArray[0];
+    storedFifoData->yAccel[i] = accelDataArray[1];
+    storedFifoData->zAccel[i] = accelDataArray[2];
+    double gyroDataArray[3];
+    getGyroData(gyroDataArray);
+    storedFifoData->roll[i] = gyroDataArray[0];
+    storedFifoData->pitch[i] = gyroDataArray[1];
+    storedFifoData->yaw[i] = gyroDataArray[2];
   }
+}
+
+inertialModuleData* LSM9DS1::getStoredData(void) {
+return storedFifoData;
 }
