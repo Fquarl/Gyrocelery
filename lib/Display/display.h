@@ -10,7 +10,7 @@
 #define __DISPLAY_H__
 
 #include <stdint.h>
-#include <page.h>
+#include "page.h"
 
 /**
  *  \class  Display

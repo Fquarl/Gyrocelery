@@ -8,7 +8,7 @@ LSM9DS1::LSM9DS1(const int accelGyro, const int magneto):
   accelGyroAddr(accelGyro), magnetoAddr(magneto)
   {
 }
-
+/*
 struct storedGyroData {
   int* xAccel;
   int* yAccel;
@@ -17,7 +17,7 @@ struct storedGyroData {
   double* roll;
   double* pitch;
 };
-
+*/
 void LSM9DS1::setAccelPrescale(const int scaler) {
   accelPrescale = AccelPrescale::factors[scaler];
   char currentRegister;
@@ -112,7 +112,7 @@ void LSM9DS1::getSphericAccel(double* coords) {
   coords[2] = atan2(accelData[1], accelData[0]);
 }
 */
-
+/*
 void LSM9DS1::enableFIFO(void) {
   char currentSetting;
   int status = i2c_readWord(accelGyroAddr, CTRL_REG9, &currentSetting); // Muss der Rückgabewert der funktion gelesen werden?
@@ -142,3 +142,4 @@ void LSM9DS1::readFifo(storedGyroData* data) {
     storedGyroData.xAccel[i] = (int16_t)(((int16_t)data[1] << 8) | dataArray[0]); // Form signed 16-bit integer for each sample in FIFO
   }
 }
+*/

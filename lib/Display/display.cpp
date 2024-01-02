@@ -9,7 +9,7 @@
 #include "display.h"
 
 #include <util/delay.h>
-#include "../i2c_driver.h"
+#include "../i2c_driver/i2c_driver.h"
 
 Display::Display(void)
 {

@@ -1,6 +1,17 @@
 #include "i2c_driver.h"
-
+#include <avr/io.h>
+#define F_CPU 8000000UL     // Frequenz des Microcontrollers fuer delay.h festlegen
+#include <util/delay.h> 
 // Nach Datenblatt ATMEGA32 S172ff 
+
+void i2c_pfusch() {
+    DDRD = 0b11111111;    
+  while(1)      // Nie endende Hauptschleife (Endlosschleife)
+  {
+    PORTD--;
+    _delay_ms(1000); 
+}
+}
 
 void i2c_init() {
   // my source is that i made it up

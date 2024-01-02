@@ -54,13 +54,31 @@ F_OSC = 8000000
 # Output format. (can be srec, ihex, binary)
 FORMAT = ihex
 
-# Target file name (without extension).
-TARGET = main
+OUTPUTDIR = ./out
+MKDIR = mkdir -p $(OUTPUTDIR)
 
+OUTNAME = main.hex
+
+CSOURCES = \
+main.c
+
+CXXSOURCES = \
+../lib/i2c_driver/i2c_driver.cpp \
+../lib/LSM9DS1/LSM9DS1.cpp
+
+# Target for cpp
+# TARGETCPP = ../lib/i2c_driver/i2c_driver
+
+# temp = $(TARGETCPP).cpp
 
 # List C source files here. (C dependencies are automatically generated.)
-SRC = $(TARGET).c
+# SRC = $(TARGET).c
 
+
+# SRC += $(temp)
+# TARGET += $(TARGETCPP)
+
+# @echo $(SRC) $<
 
 # List Assembler source files here.
 # Make them always end in a capital .S.  Files ending in a lowercase .s
@@ -115,7 +133,7 @@ CFLAGS += $(CDEFS) $(CINCS)
 CFLAGS += -O$(OPT)
 CFLAGS += -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums
 CFLAGS += -Wall -Wstrict-prototypes
-CFLAGS += -Wa,-adhlns=$(<:.c=.lst)
+#CFLAGS += -Wa,-adhlns=$(<:.c=.lst)
 CFLAGS += $(patsubst %,-I%,$(EXTRAINCDIRS))
 CFLAGS += $(CSTANDARD)
 CFLAGS += -DF_OSC=$(F_OSC)
@@ -191,7 +209,7 @@ AVRDUDE_PROGRAMMER = stk500v2
 # com1 = serial port. Use lpt1 to connect to parallel port.
 AVRDUDE_PORT = /dev/ttyUSB0    # programmer connected to serial device
 
-AVRDUDE_WRITE_FLASH = -U flash:w:$(TARGET).hex
+AVRDUDE_WRITE_FLASH = -U flash:w:$(OUTNAME)
 #AVRDUDE_WRITE_EEPROM = -U eeprom:w:$(TARGET).eep
 
 
@@ -264,6 +282,11 @@ MSG_CLEANING = Cleaning project:
 
 # Define all object files.
 OBJ = $(SRC:.c=.o) $(ASRC:.S=.o) 
+COBJECTFILES = $(CSOURCES:.c=.o)  
+
+CPPOBJECTFILES = $(CXXSOURCES:.cpp=.o)
+OBJECTFILES =  $(COBJECTFILES)
+OBJECTFILES += $(CPPOBJECTFILES)
 
 # Define all listing files.
 LST = $(ASRC:.S=.lst) $(SRC:.c=.lst)
@@ -279,21 +302,34 @@ ALL_CFLAGS = -mmcu=$(MCU) -I. $(CFLAGS) $(GENDEPFLAGS)
 ALL_ASFLAGS = -mmcu=$(MCU) -I. -x assembler-with-cpp $(ASFLAGS)
 
 
-
-
-
 # Default target.
-all: begin gccversion sizebefore build sizeafter finished end
+all: begin gccversion infos triggerCompilation link cleanup
 
-build: elf hex eep lss sym
+infos: 
+	@echo C Source Files:
+	@echo $(CSOURCES)
+	@echo CPP Source Files:
+	@echo $(CXXSOURCES)
+	@echo Object Files:
+	@echo $(OBJECTFILES)
+	
+triggerCompilation: $(OBJECTFILES)
 
-elf: $(TARGET).elf
-hex: $(TARGET).hex
-eep: $(TARGET).eep
-lss: $(TARGET).lss 
-sym: $(TARGET).sym
-
-
+# %.o: %.c
+# 	echo compiling c $@
+# 	$(CXX) -c $< $(ALL_CFLAGS) -o $@
+	
+%.o: %.cpp
+	@echo compiling c++ $@
+	$(CXX) -c $< $(ALL_CFLAGS) -std=gnu++17 -o $@
+	
+link:
+	@echo Starting link
+	$(CXX) -g $(ALL_CFLAGS) $(OBJECTFILES) -o $(OUTNAME)
+	# avr-gcc -g -mmcu=atmega32 main.o i2c_driver.o -o main.hex
+	
+cleanup:
+	for file in $(OBJECTFILES); do $(REMOVE) $$file; done;
 
 # Eye candy.
 # AVR Studio 3.x does not check make's exit code but relies on
@@ -309,18 +345,6 @@ end:
 	@echo $(MSG_END)
 	@echo
 
-
-# Display size of file.
-HEXSIZE = $(SIZE) --target=$(FORMAT) $(TARGET).hex
-ELFSIZE = $(SIZE) -A $(TARGET).elf
-sizebefore:
-	@if [ -f $(TARGET).elf ]; then echo; echo $(MSG_SIZE_BEFORE); $(ELFSIZE); echo; fi
-
-sizeafter:
-	@if [ -f $(TARGET).elf ]; then echo; echo $(MSG_SIZE_AFTER); $(ELFSIZE); echo; fi
-
-
-
 # Display compiler version information.
 gccversion : 
 	@$(CC) --version
@@ -328,11 +352,11 @@ gccversion :
 
 
 # Program the device.  
-program: $(TARGET).hex $(TARGET).eep
+program: $(OUTNAME) 
 	$(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH) $(AVRDUDE_WRITE_EEPROM)
 
 # compile and program
-upload: begin gccversion sizebefore build sizeafter program clean finished end
+upload: begin gccversion infos triggerCompilation link program cleanup finished end
 
 
 # Convert ELF to COFF for use in debugging / simulating in AVR Studio or VMLAB.
@@ -392,22 +416,27 @@ extcoff: $(TARGET).elf
 
 
 # Compile: create object files from C source files.
-%.o : %.c
-	@echo
-	@echo $(MSG_COMPILING) $<
-	$(CC) -c $(ALL_CFLAGS) $< -o $@ 
+# %.o : %.c
+# 	@echo
+# 	@echo $(MSG_COMPILING) $<
+# 	$(CC) -c $(ALL_CFLAGS) $< -o $@ 
 
+# Compile: create object files from C++ source files.
+# %.o : %.cpp
+# 	@echo
+# 	@echo $(MSG_COMPILING) $<
+# 	$(CXX) -c $(ALL_CFLAGS) $< -o $@ 
 
 # Compile: create assembler files from C source files.
-%.s : %.c
-	$(CC) -S $(ALL_CFLAGS) $< -o $@
+# %.s : %.c
+# 	$(CC) -S $(ALL_CFLAGS) $< -o $@
 
 
 # Assemble: create object files from assembler source files.
-%.o : %.S
-	@echo
-	@echo $(MSG_ASSEMBLING) $<
-	$(CC) -c $(ALL_ASFLAGS) $< -o $@
+# %.o : %.S
+# 	@echo
+# 	@echo $(MSG_ASSEMBLING) $<
+# 	$(CC) -c $(ALL_ASFLAGS) $< -o $@
 
 
 
@@ -441,7 +470,5 @@ clean_list :
 
 
 # Listing of phony targets.
-.PHONY : all begin finish end sizebefore sizeafter gccversion \
-build elf hex eep lss sym coff extcoff \
-clean clean_list program
+.PHONY : begin gccversion infos triggerCompilation link cleanup
 
