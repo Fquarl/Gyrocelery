@@ -54,9 +54,6 @@ F_OSC = 8000000
 # Output format. (can be srec, ihex, binary)
 FORMAT = ihex
 
-OUTPUTDIR = ./out
-MKDIR = mkdir -p $(OUTPUTDIR)
-
 OUTNAME = main.hex
 
 CSOURCES = \
@@ -193,9 +190,6 @@ LDFLAGS = -Wl,-Map=$(TARGET).map,--cref
 LDFLAGS += $(EXTMEMOPTS)
 LDFLAGS += $(PRINTF_LIB) $(SCANF_LIB) $(MATH_LIB)
 
-
-
-
 # Programming support using avrdude. Settings and variables.
 
 # Programming hardware: alf avr910 avrisp bascom bsd 
@@ -256,9 +250,6 @@ AVRDUDE = avrdude
 REMOVE = rm -f
 COPY = cp
 
-
-
-
 # Define Messages
 # English
 MSG_ERRORS_NONE = Errors: none
@@ -277,18 +268,10 @@ MSG_COMPILING = Compiling:
 MSG_ASSEMBLING = Assembling:
 MSG_CLEANING = Cleaning project:
 
-
-
-
 # Define all object files.
 OBJ = $(SRC:.c=.o) $(ASRC:.S=.o) 
 
-OBJECTFILES = $(CSOURCES:.c=.o) $(CXXSOURCES:.cpp=.o)
-
-COBJECTFILES = $(CSOURCES:.c=.co)  
-
-CPPOBJECTFILES = $(CXXSOURCES:.cpp=.cppo)
-NAMEDOBJECTFILES = $(COBJECTFILES) $(CPPOBJECTFILES)
+OBJECTFILES = $(CSOURCES:.c=.co) $(CXXSOURCES:.cpp=.cppo)
 
 # Define all listing files.
 LST = $(ASRC:.S=.lst) $(SRC:.c=.lst)
@@ -306,7 +289,11 @@ ALL_ASFLAGS = -mmcu=$(MCU) -I. -x assembler-with-cpp $(ASFLAGS)
 
 # Default target.
 all: begin gccversion infos triggerCompilation link cleanup
-allNamed: begin gccversion infos triggerNamedCompilation linkNamed cleanup
+# allNamed: begin gccversion infos triggerNamedCompilation linkNamed cleanup
+
+# compile and program
+upload: begin gccversion infos triggerCompilation link program cleanup finished end
+
 
 infos: 
 	@echo C Source Files:
@@ -317,7 +304,6 @@ infos:
 	@echo $(OBJECTFILES)
 	
 triggerCompilation: $(OBJECTFILES)
-triggerNamedCompilation: $(NAMEDOBJECTFILES)
 
 %.co: %.c
 	echo compiling c $@
@@ -334,11 +320,6 @@ triggerNamedCompilation: $(NAMEDOBJECTFILES)
 link:
 	@echo Starting link
 	$(CXX) -g $(ALL_CFLAGS) $(OBJECTFILES) -o $(OUTNAME)
-	# avr-gcc -g -mmcu=atmega32 main.o i2c_driver.o -o main.hex
-	
-linkNamed:
-	@echo Starting link
-	$(CXX) -g $(ALL_CFLAGS) $(NAMEDOBJECTFILES) -o $(OUTNAME)
 	# avr-gcc -g -mmcu=atmega32 main.o i2c_driver.o -o main.hex
 	
 cleanup:
@@ -367,120 +348,9 @@ gccversion :
 # Program the device.  
 program: $(OUTNAME) 
 	$(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH) $(AVRDUDE_WRITE_EEPROM)
-
-# compile and program
-upload: begin gccversion infos triggerNamedCompilation linkNamed program cleanup finished end
-
-
-# Convert ELF to COFF for use in debugging / simulating in AVR Studio or VMLAB.
-COFFCONVERT=$(OBJCOPY) --debugging \
---change-section-address .data-0x800000 \
---change-section-address .bss-0x800000 \
---change-section-address .noinit-0x800000 \
---change-section-address .eeprom-0x810000 
-
-
-coff: $(TARGET).elf
-	@echo
-	@echo $(MSG_COFF) $(TARGET).cof
-	$(COFFCONVERT) -O coff-avr $< $(TARGET).cof
-
-
-extcoff: $(TARGET).elf
-	@echo
-	@echo $(MSG_EXTENDED_COFF) $(TARGET).cof
-	$(COFFCONVERT) -O coff-ext-avr $< $(TARGET).cof
-
-
-
-# Create final output files (.hex, .eep) from ELF output file.
-%.hex: %.elf
-	@echo
-	@echo $(MSG_FLASH) $@
-	$(OBJCOPY) -O $(FORMAT) -R .eeprom $< $@
-
-%.eep: %.elf
-	@echo
-	@echo $(MSG_EEPROM) $@
-	-$(OBJCOPY) -j .eeprom --set-section-flags=.eeprom="alloc,load" \
-	--change-section-lma .eeprom=0 -O $(FORMAT) $< $@
-
-# Create extended listing file from ELF output file.
-%.lss: %.elf
-	@echo
-	@echo $(MSG_EXTENDED_LISTING) $@
-	$(OBJDUMP) -h -S $< > $@
-
-# Create a symbol table from ELF output file.
-%.sym: %.elf
-	@echo
-	@echo $(MSG_SYMBOL_TABLE) $@
-	$(NM) -n $< > $@
-
-
-
-# Link: create ELF output file from object files.
-.SECONDARY : $(TARGET).elf
-.PRECIOUS : $(OBJ)
-%.elf: $(OBJ)
-	@echo
-	@echo $(MSG_LINKING) $@
-	$(CC) $(ALL_CFLAGS) $(OBJ) --output $@ $(LDFLAGS)
-
-
-# Compile: create object files from C source files.
-# %.o : %.c
-# 	@echo
-# 	@echo $(MSG_COMPILING) $<
-# 	$(CC) -c $(ALL_CFLAGS) $< -o $@ 
-
-# Compile: create object files from C++ source files.
-# %.o : %.cpp
-# 	@echo
-# 	@echo $(MSG_COMPILING) $<
-# 	$(CXX) -c $(ALL_CFLAGS) $< -o $@ 
-
-# Compile: create assembler files from C source files.
-# %.s : %.c
-# 	$(CC) -S $(ALL_CFLAGS) $< -o $@
-
-
-# Assemble: create object files from assembler source files.
-# %.o : %.S
-# 	@echo
-# 	@echo $(MSG_ASSEMBLING) $<
-# 	$(CC) -c $(ALL_ASFLAGS) $< -o $@
-
-
-
-# Target: clean project.
-clean: begin clean_list finished end
-
-clean_list :
-	@echo
-	@echo $(MSG_CLEANING)
-	$(REMOVE) $(TARGET).hex
-	$(REMOVE) $(TARGET).eep
-	$(REMOVE) $(TARGET).obj
-	$(REMOVE) $(TARGET).cof
-	$(REMOVE) $(TARGET).elf
-	$(REMOVE) $(TARGET).map
-	$(REMOVE) $(TARGET).obj
-	$(REMOVE) $(TARGET).a90
-	$(REMOVE) $(TARGET).sym
-	$(REMOVE) $(TARGET).lnk
-	$(REMOVE) $(TARGET).lss
-	$(REMOVE) $(OBJ)
-	$(REMOVE) $(LST)
-	$(REMOVE) $(SRC:.c=.s)
-	$(REMOVE) $(SRC:.c=.d)
-	$(REMOVE) .dep/*
-
-
-
+	
 # Include the dependency files.
 -include $(shell mkdir .dep 2>/dev/null) $(wildcard .dep/*)
-
 
 # Listing of phony targets.
 .PHONY : begin gccversion infos triggerCompilation link cleanup
