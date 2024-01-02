@@ -44,6 +44,18 @@ class accelGyroOdr {
     static const int ODR476 = 0b101;
     static const int ODR952 = 0b110;
 };
+/**
+ *  \struct storedGyroData
+ *  \brief  This struct stores all data of the fifo in the LSM9DS1.
+ */
+struct inertialModuleData {
+  double xAccel[32];
+  double yAccel[32];
+  double zAccel[32];
+  double yaw[32];
+  double roll[32];
+  double pitch[32];
+};
 
 /**
  *  \class  LSM9DS1
@@ -111,22 +123,35 @@ class LSM9DS1{
      *  \returns    The total acceleration  as g-value.
      */
     double getTotalAccel(double* existingData = 0);
-    
+
     // void getSphericAccel(double* coords);
     /**
      *  \fn         setFifoInterrupt
      *  \brief      This method enables the "FIFO threshhold reached" interrupt
      */
     void setFifoInterrupt(void);
+
         /**
      *  \fn         enableFIFO
      *  \brief      This method sets the FIFO mode to the "continous mode", as new data arrives the older is discarded.
      */
-    void enableFIFO(void);
-    void readFifo(double* gyroData, int* accelData);
+    void enableFifo(void);
+
+    /**
+     *  \fn         readFifo
+     *  \brief      Saves all the data stored in the FIFO of the LSM9DS1 to the internal storedFifoData Object
+     */
+    void readFifo(void);
+
+    /**
+     *  \fn         getStoredData
+     *  \brief      Reads all the data stored in the internal storedFifoData Object to the provided storedGyroData struct
+     *  \returns    The storedFifoData of the LSM9DS1
+     */
+    inertialModuleData* getStoredData(void);
 
   private:
-    typedef struct storedGyroData; 
+    inertialModuleData* storedFifoData = new inertialModuleData();
     int accelGyroAddr;
     int magnetoAddr;
     int accelPrescale = 2;
