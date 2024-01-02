@@ -26,7 +26,7 @@ void i2c_stopCondition()
 {
     TWCR= (1<<TWINT)|(1<<TWEN)|(1<<TWSTO);
     while((TWCR & (1<<TWSTO)));
-    delay(1); 
+    // delay(1); 
 }
 
 int i2c_sendAddressWrite(const int address)
@@ -194,7 +194,7 @@ int i2c_readNDwords(int address, int startRegister, int* dataArray, int len) {
   }
 
   const int byteSum = len * 2;
-  byte dataRaw[byteSum];
+  char dataRaw[byteSum];
   for(int i = 0; i < byteSum; i++) {
     dataRaw[i] = i2c_readByte(i + 1 != byteSum);
   }
