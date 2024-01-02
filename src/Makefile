@@ -282,11 +282,13 @@ MSG_CLEANING = Cleaning project:
 
 # Define all object files.
 OBJ = $(SRC:.c=.o) $(ASRC:.S=.o) 
-COBJECTFILES = $(CSOURCES:.c=.o)  
 
-CPPOBJECTFILES = $(CXXSOURCES:.cpp=.o)
-OBJECTFILES =  $(COBJECTFILES)
-OBJECTFILES += $(CPPOBJECTFILES)
+OBJECTFILES = $(CSOURCES:.c=.o) $(CXXSOURCES:.cpp=.o)
+
+COBJECTFILES = $(CSOURCES:.c=.co)  
+
+CPPOBJECTFILES = $(CXXSOURCES:.cpp=.cppo)
+NAMEDOBJECTFILES = $(COBJECTFILES) $(CPPOBJECTFILES)
 
 # Define all listing files.
 LST = $(ASRC:.S=.lst) $(SRC:.c=.lst)
@@ -304,6 +306,7 @@ ALL_ASFLAGS = -mmcu=$(MCU) -I. -x assembler-with-cpp $(ASFLAGS)
 
 # Default target.
 all: begin gccversion infos triggerCompilation link cleanup
+allNamed: begin gccversion infos triggerNamedCompilation linkNamed cleanup
 
 infos: 
 	@echo C Source Files:
@@ -314,10 +317,15 @@ infos:
 	@echo $(OBJECTFILES)
 	
 triggerCompilation: $(OBJECTFILES)
+triggerNamedCompilation: $(NAMEDOBJECTFILES)
 
-# %.o: %.c
-# 	echo compiling c $@
-# 	$(CXX) -c $< $(ALL_CFLAGS) -o $@
+%.co: %.c
+	echo compiling c $@
+	$(CXX) -c $< $(ALL_CFLAGS) -o $@
+	
+%.cppo: %.cpp
+	echo compiling c $@
+	$(CXX) -c $< $(ALL_CFLAGS) -std=gnu++17 -o $@
 	
 %.o: %.cpp
 	@echo compiling c++ $@
@@ -326,6 +334,11 @@ triggerCompilation: $(OBJECTFILES)
 link:
 	@echo Starting link
 	$(CXX) -g $(ALL_CFLAGS) $(OBJECTFILES) -o $(OUTNAME)
+	# avr-gcc -g -mmcu=atmega32 main.o i2c_driver.o -o main.hex
+	
+linkNamed:
+	@echo Starting link
+	$(CXX) -g $(ALL_CFLAGS) $(NAMEDOBJECTFILES) -o $(OUTNAME)
 	# avr-gcc -g -mmcu=atmega32 main.o i2c_driver.o -o main.hex
 	
 cleanup:
@@ -356,7 +369,7 @@ program: $(OUTNAME)
 	$(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH) $(AVRDUDE_WRITE_EEPROM)
 
 # compile and program
-upload: begin gccversion infos triggerCompilation link program cleanup finished end
+upload: begin gccversion infos triggerNamedCompilation linkNamed program cleanup finished end
 
 
 # Convert ELF to COFF for use in debugging / simulating in AVR Studio or VMLAB.
