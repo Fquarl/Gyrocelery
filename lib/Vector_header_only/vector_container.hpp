@@ -9,8 +9,6 @@
 #include "vector_heap.hpp"
 #include "vector_element.hpp"
 
-using namespace VECTOR_HEAP;
-
 /**
  *  \class  VectorContainer
  *  \brief  Container for multiple elements of the linked list
