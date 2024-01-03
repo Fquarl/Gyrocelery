@@ -1,6 +1,7 @@
 /**
  *  \file vector_heap.hpp
  *  \note Do not include this file directly!
+ *  \see  https://onlinedocs.microchip.com/pr/GUID-317042D4-BCCE-4065-BB05-AC4312DBC2C4-en-US-2/index.html?GUID-27757112-8BE1-49C2-B023-CD94AD06C5E2
  */
 
 #ifndef __VECTOR_HEAP_HPP__
@@ -27,6 +28,25 @@ namespace HEAP_SETTINGS
      *  \value      0x100
      */
     constexpr uint16_t maxHeapSize = 0x100;
+
+    /**
+     *  \var        mallocMargin
+     *  \brief      The constant references __malloc_margin to define the minimum margin to the stack 
+     *  \value      Default value is 0x20
+     */
+     constexpr size_t& mallocMargin = __malloc_margin;
+
+    /**
+     *  \var        mallocHeapStart
+     *  \brief      The constant references __malloc_heap_start to point to the heap's start byte
+     */
+     constexpr char*& mallocHeapStart = __malloc_heap_start;
+
+    /**
+     *  \var        mallocHeapEnd
+     *  \brief      The constant references __malloc_heap_end to point to the heap's maximum byte position      
+     */
+     constexpr char*& mallocHeapEnd = __malloc_heap_end;
 }
 
 /**
