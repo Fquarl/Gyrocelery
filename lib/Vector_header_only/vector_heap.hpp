@@ -33,18 +33,21 @@ namespace HEAP_SETTINGS
      *  \var        mallocMargin
      *  \brief      The constant references __malloc_margin to define the minimum margin to the stack 
      *  \value      Default value is 0x20
+     *  \note       The value is set in the linking process.
      */
      constexpr size_t& mallocMargin = __malloc_margin;
 
     /**
      *  \var        mallocHeapStart
      *  \brief      The constant references __malloc_heap_start to point to the heap's start byte
+     *  \note       The value is set in the linking process.
      */
      constexpr char*& mallocHeapStart = __malloc_heap_start;
 
     /**
      *  \var        mallocHeapEnd
-     *  \brief      The constant references __malloc_heap_end to point to the heap's maximum byte position      
+     *  \brief      The constant references __malloc_heap_end to point to the heap's maximum byte position
+     *  \note       The value is set in the linking process.
      */
      constexpr char*& mallocHeapEnd = __malloc_heap_end;
 }
