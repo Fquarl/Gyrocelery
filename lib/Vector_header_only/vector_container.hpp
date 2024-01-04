@@ -61,7 +61,7 @@ public:
      *  \param[in]  index passes the index of the target value
      *  \return     The value at the given index
      */
-    ContentType at(const uint8_t &index) const
+    ContentType& at(const uint8_t &index) const
     {
         VectorElement<ContentType> *targetElement = elementAt(index);
         return targetElement->getContent();
