@@ -54,7 +54,7 @@ private:
      *  \brief      Writes 4 bits to the driver and toggles pulse
      *  \param[in]  byte passses the byte (nibble) to write
      */
-    void Display::write4Bits(const uint8_t &byte) const;
+    void write4Bits(const uint8_t &byte) const;
 
     /**
      *  \fn         writeByte
