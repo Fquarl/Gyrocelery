@@ -28,6 +28,14 @@ public:
     }
 
     /**
+     *  \fn         ~VectorElement
+     *  \brief      Removes the instance from the memory 
+    */
+    ~VectorElement(void)
+    {
+    }
+
+    /**
      *  \fn     getContent
      *  \brief  Getter method for the instance stored
      *  \return Reference to the stored instance

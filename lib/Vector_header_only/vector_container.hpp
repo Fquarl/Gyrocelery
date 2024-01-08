@@ -28,6 +28,15 @@ public:
     }
 
     /**
+     *  \fn     ~VectorContainer
+     *  \brief  Removes the container from the AVR's memory 
+    */
+    ~VectorContainer(void)
+    {
+        deleteAll();
+    }
+
+    /**
      *  \fn         append
      *  \brief      The method adds a new element to the top of the linked list
      *  \param[in]  value passes the instance of template type to store

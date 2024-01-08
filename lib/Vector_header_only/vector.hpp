@@ -26,6 +26,15 @@ public:
     }
 
     /**
+     *  \fn     ~Vector 
+     *  \brief  The destructor avoids memory leaks 
+    */
+    ~Vector(void)
+    {
+        VectorContainer::~VectorContainer();
+    }
+
+    /**
      *  \fn     Vector
      *  \brief  The constructor initializes an list with the passed parameter
      */
