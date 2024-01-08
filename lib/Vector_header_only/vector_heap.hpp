@@ -35,21 +35,21 @@ namespace HEAP_SETTINGS
      *  \value      Default value is 0x20
      *  \note       The value is set in the linking process.
      */
-     constexpr size_t& mallocMargin = __malloc_margin;
+     constexpr inline size_t& mallocMargin = __malloc_margin;
 
     /**
      *  \var        mallocHeapStart
      *  \brief      The constant references __malloc_heap_start to point to the heap's start byte
      *  \note       The value is set in the linking process.
      */
-     constexpr char*& mallocHeapStart = __malloc_heap_start;
+     constexpr inline char*& mallocHeapStart = __malloc_heap_start;
 
     /**
      *  \var        mallocHeapEnd
      *  \brief      The constant references __malloc_heap_end to point to the heap's maximum byte position
      *  \note       The value is set in the linking process.
      */
-     constexpr char*& mallocHeapEnd = __malloc_heap_end;
+     constexpr inline char*& mallocHeapEnd = __malloc_heap_end;
 }
 
 /**
@@ -58,7 +58,7 @@ namespace HEAP_SETTINGS
  *  \param[in]  size passes the size of the new instance in bytes
  *  \note       The function might return nullptr to avoid heap and stack colliding!
  */
-void* operator new(size_t size)
+inline void* operator new(size_t size)
 {
     return malloc(size);
 }
@@ -68,7 +68,7 @@ void* operator new(size_t size)
  *  \brief      The function deletes a existing instance from the heap
  *  \param[in]  prt passes the pointer to the instance to delete from the heap
  */
-void operator delete(void* ptr)
+inline void operator delete(void* ptr)
 {        
     free(ptr);
 }

@@ -5,13 +5,13 @@
  *  For now it contians the control for the display.
  */
 
-#include "../lib/lcd.hpp"
+#include "../lib/Display/lcd.hpp"
 
 int main(void)
 {
     LCD display;
     Vector<char> text;
-    text << "Guten Abend, mein Name ist Luca!";
+    text << "Hello, World. Dieses Projekt ist für Mikrorechnertechnik!";
 
     while (true)
     {
