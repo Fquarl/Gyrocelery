@@ -4,7 +4,7 @@
 #ifndef I2C_DRIVER_H
 #define I2C_DIVER_H
 
-#include <avr/io.h>
+//#include <avr/io.h>
 #include <stdio.h>
 
 void i2c_pfusch();

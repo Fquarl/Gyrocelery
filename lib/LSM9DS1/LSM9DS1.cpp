@@ -40,12 +40,30 @@ void LSM9DS1::setODR(const int ODR) {
   char lastStatus;
   int status = i2c_readWord(accelGyroAddr, CTRL_REG1_G, &lastStatus);
   
-  
   if(status != 0x40) return;
   char newRegister = lastStatus & 0b00011111;
   newRegister = newRegister | ODR << 5;
-  
-  
+  i2c_writeWord(accelGyroAddr, CTRL_REG1_G, newRegister);
+}
+
+void LSM9DS1::setGyroHighPassFilter(bool enable) {
+  char currentSetting;
+  int  status = i2c_readWord(accelGyroAddr, CTRL_REG3_G, &currentSetting);
+  if(status != 0x40) return;
+
+  unsigned char newSetting;
+  unsigned char highPassEnable;
+  unsigned char cutoffFrequency;
+  if (true == enable) {
+    cutoffFrequency = 0b00000111;
+    highPassEnable = 0b01000000;
+    newSetting = currentSetting | highPassEnable | cutoffFrequency ;
+  }
+  else {
+
+  }
+    
+  i2c_writeWord(accelGyroAddr, CTRL_REG3_G, newSetting);
 }
 
 void LSM9DS1::getGyroDataRaw(int* dataArray) {
@@ -105,13 +123,23 @@ void LSM9DS1::getSphericAccel(double* coords) {
 }
 */
 
-void LSM9DS1::enableFifo(void) {
+void LSM9DS1::setFifo(bool enable) {
   char currentSetting;
   int status = i2c_readWord(accelGyroAddr, CTRL_REG9, &currentSetting); // Muss der Rückgabewert der funktion gelesen werden?
-  int ctrlRegSetting = (currentSetting | 0b00000010);                   // Enable FIFO in CTRL Register
+  unsigned char FIFO_EN;
+  unsigned char fMode;
+  if(enable == true) {
+    FIFO_EN = 0b11111111;
+    fMode = fifoMode;
+  }
+  else {
+    FIFO_EN = 0b11111101;
+    fMode = 0;
+  }
+  int ctrlRegSetting = (currentSetting & FIFO_EN);                   // Enable FIFO in CTRL Register
   i2c_writeWord(accelGyroAddr, CTRL_REG9, ctrlRegSetting);
 
-  int fifoCtrlRegSetting = ((fifoMode << 5) |  fifoThreshholdSize);
+  int fifoCtrlRegSetting = ((fMode << 5) |  fifoThreshholdSize);
   i2c_writeWord(accelGyroAddr, FIFO_CTRL, fifoCtrlRegSetting);
 }
 

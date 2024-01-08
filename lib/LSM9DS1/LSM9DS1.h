@@ -68,8 +68,8 @@ class LSM9DS1{
      *  \fn         softreset
      *  \brief      The method shows performs a softreset of the device
     */
-
     void softreset();   // done
+
      /**
      *  \fn         setODR
      *  \brief      The method sets the output data rate of both the accelerometer and gyroscope.
@@ -78,6 +78,14 @@ class LSM9DS1{
      */
     void setODR(const int ODR); // done
 
+    /**
+     *  \fn         setGyroHighPassFilter
+     *  \brief      The method sets frequency of the high pass filter of the gyroscope. The frequency depends on the set ODR
+     *  \param[in]  Activates the filter based on the value
+     *  \see        setODR
+     */
+    void setGyroHighPassFilter(bool enable);
+
      /**
      *  \fn         setAccelPrescale
      *  \brief      The method sets the prescaler/fullscale range of the accelerometer
@@ -85,6 +93,7 @@ class LSM9DS1{
      *  \see        AccelPrescale
      */
     void setAccelPrescale(const int scaler); // done
+
      /**
      *  \fn         setGyroPrescale
      *  \brief      The method sets the prescaler/fullscale range of the gyroscope
@@ -92,24 +101,28 @@ class LSM9DS1{
      *  \see        GyroPrescale
      */
     void setGyroPrescale(const int scaler);  // done
+
      /**
      *  \fn         getGyroDataRaw
      *  \brief      The method reads all gyro axis as raw values
      *  \param[inOut]  An pointer to an integer array of size 3 containing the data. X-axis, Y-axis and Z-axis.
      */
     void getGyroDataRaw(int* dataArray);
+
      /**
      *  \fn         getGyroData
      *  \brief      The method reads all gyro axis as dps-value.
      *  \param[inOut]  An pointer to an double array of size 3 containing the data. X-axis, Y-axis and Z-axis.
      */
     void getGyroData(double* dataArray);
+
      /**
      *  \fn         getAccelDataRaw
      *  \brief      The method reads all accelerometer axis as raw values
      *  \param[inOut]  An pointer to an integer array of size 3 containing the data. X-axis, Y-axis and Z-axis.
      */
     void getAccelDataRaw(int* dataArray);
+
      /**
      *  \fn         getAccekData
      *  \brief      The method reads all accelerometer axis as g-values
@@ -131,11 +144,12 @@ class LSM9DS1{
      */
     void setFifoInterrupt(void);
 
-        /**
-     *  \fn         enableFIFO
-     *  \brief      This method sets the FIFO mode to the "continous mode", as new data arrives the older is discarded.
+    /**
+     *  \fn         setFifo
+     *  \brief      This method sets the FIFO mode to the "continous mode" according to the input value, as new data arrives the older is discarded.
+     *  \param[in]  Activates the FIFO based on the given value 
      */
-    void enableFifo(void);
+    void setFifo(bool enable);
 
     /**
      *  \fn         readFifo
@@ -157,7 +171,7 @@ class LSM9DS1{
     int accelPrescale = 2;
     int gyroPrescale = 245;
     int currentODR;
-    int fifoMode = 0b110; // 0b110 Continous Mode 0b001 FIFO mode
+    int fifoMode = 0b110; // 0b001 FIFO mode 0b000 FIFO off
     int fifoThreshholdSize = 0b11111; // 32 samples werden pro Achse gespeichert
 };
 
