@@ -1,5 +1,5 @@
 /**
- *  \file vector.hpp
+ *  \file lcd.cpp
  */
 
 #include "lcd.hpp"

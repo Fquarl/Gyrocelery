@@ -1,5 +1,5 @@
 /**
- *  \file vector.hpp
+ *  \file lcd.hpp
  */
 
 #ifndef __LCD_HPP__
