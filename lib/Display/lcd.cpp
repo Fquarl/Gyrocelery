@@ -16,17 +16,11 @@ void LCD::printFormatted(const Vector<char>& text)
 		for (uint8_t i = 0; i < _columnCount; i++)
 		{
 			const uint8_t nextIndex = i + n * _columnCount;
-			
-			if (nextIndex >= _rowCount * _columnCount)
-			{
-				break;
-			}
 			setCursor(i, n);
 			print(&text.at(nextIndex));
 		}
 	}
 }
-
 
 void LCD::print(char text[32])
 {
