@@ -20,21 +20,19 @@ Auslesen eines 6 Achsen- Gyroskops bzw. Beschleunigungssensors, wie z.B. MPU 605
 The intended use of the display is as follows:
 
 ```C++
-#include <util/delay.h>
-#include <Display/display.h>
+#include "../lib/lcd.hpp"
 
 int main(void)
 {
-    constexpr uint8_t displayI2CAddress = 0x28;
-    Display display(displayI2CAddress);
+    LCD display;
+    Vector<char> text;
+    text << "Guten Abend, mein Name ist Luca!";
 
-    for (;;)
+    while (true)
     {
-        const Page page("Hello, World!\n How are you?");
-        display.show(page);
+        display.printFormatted(text);
         _delay_ms(1000);
     }
 
     return 0;
 }
-```
