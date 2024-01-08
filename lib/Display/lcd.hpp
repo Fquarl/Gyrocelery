@@ -19,277 +19,450 @@ class LCD
 {
 public:
 
-    LCD(void)
-    {
-		init();
-    }
+	/**
+	 *	\fn 	LCD
+	 * 	\brief	The constructor initializes the instance of type 'LCD'
+	 */
+    LCD(void);
 
-	void printFormatted(const Vector<char>& text)
-	{
-		for (uint8_t n = 0; n < _rowCount; n++)
-		{
-			for (uint8_t i = 0; i < _columnCount; i++)
-			{
-				const uint8_t nextIndex = i + n * _columnCount;
-				
-				if (nextIndex >= _rowCount * _columnCount)
-				{
-					break;
-				}
+	/**
+	 *	\fn 		printFormatted
+	 * 	\brief		The method prints a formatted string vector on the display
+	 * 	\param[in]	text passes the ccharacters in a custom vector
+	 */
+	void printFormatted(const Vector<char>& text);
 
-				setCursor(i, n);
-				print(&text.at(nextIndex));
-			}
-		}
-	}
+	/**
+	 *	\fn 		print
+	 * 	\brief		The method prints a C string on the display
+	 * 	\param[in]	text passes the characters as a C string
+	 */
+    void print(char text[32]);
 
-    void print(char text[32])
-    {
-    	char c[32] = {};
+	/**
+	 *	\fn 	home
+	 * 	\brief	The method makes the display return home position
+	 */
+    void home(void);
 
-    	strcpy(c, text);
+	/**
+	 *	\fn 	clear
+	 * 	\brief	The method clears the display
+	 */
+    void clear(void);
 
-    	uint8_t index = 0;
-    	while (index < 32)
-    	{
-    		if (0x00 == c[index])
-    		{
-    			break;
-    		}
-    		send(c[index], RS);
-    		index++;
-    	}
-    }
+	/**	
+	 * 	\fn			setCursor
+	 * 	\brief		The method sets the cursor where the next char gets printed
+	 * 	\param[in]	columnIndex passes the x position to set the cursor to 
+	 * 	\param[in]	rowIndex passes the y position to set the cursor to
+	 */
+    void setCursor(const uint8_t& columnIndex, const uint8_t& rowIndex);
 
-    void home(void)
-    {
-    	command(RETURNHOME);
-    	_delay_us(2000);
-    }
+	/**
+	 *	\fn 		backlightOnOff
+	 * 	\brief		The method enables/disables the backlight of the display
+	 * 	\param[in]	state passes the state to set the backlighting to
+	 */
+    void backlightOnOff(const bool& state);
 
-    void clear(void)
-    {
-    	command(CLEARDISPLAY);
-    	_delay_us(2000);
-    }
+	/**
+	 *	\fn 		blinkOnOff
+	 * 	\brief		The method enables/disables the blink of the display
+	 * 	\param[in]	state passes the state to set the blink to
+	 */
+    void blinkOnOff(const bool& state);
 
-    void setCursor(const uint8_t& columnIndex, const uint8_t& rowIndex)
-    {
-    	const uint8_t rowOffsets[] = {0x00, 0x40, 0x14, 0x54};
-		uint8_t rowIndexVolatile = rowIndex;
+	/**
+	 *	\fn 		cursorOnOff
+	 * 	\brief		The method enables/disbales the cursor of the display
+	 * 	\param[in]	state passes the state to set the cursor visibility to
+	 */
+    void cursorOnOff(const bool& state);
 
-    	if (rowIndexVolatile > _rowCount)
-    	{
-    		rowIndexVolatile = _rowCount - 1;
-    	}
-    	command(SETDDRAMADDR | (columnIndex + rowOffsets[rowIndexVolatile]));
-    }
-
-    void backlightOnOff(const bool& state)
-    {
-    	if (state)
-    	{
-    		_backlightValue = BACKLIGHT;
-    	}
-    	else
-    	{
-    		_backlightValue = NOBACKLIGHT;
-    	}
-    	command(0);
-    }
-
-    void blinkOnOff(const bool& state)
-    {
-        if (state)
-	    {
-	    	_displayControl |= BLINKON;
-	    }
-	    else
-	    {
-	    	_displayControl &= ~BLINKON;
-	    }
-	    command(DISPLAYCONTROL | _displayControl);
-    }
-
-    void cursorOnOff(const bool& state)
-    {
-        if (state)
-	    {
-	    	_displayControl |= CURSORON;
-	    }
-	    else
-	    {
-	    	_displayControl &= ~CURSORON;
-	    }
-	    command(DISPLAYCONTROL | _displayControl);
-    }
-
-    void displayOnOff(const bool& state)
-    {
-    	if (state)
-    	{
-    		_displayControl |= DISPLAYON;
-    	}
-    	else
-    	{
-    		_displayControl &= ~DISPLAYON;
-    	}
-    	command(DISPLAYCONTROL | _displayControl);
-    }
+	/**
+	 *	\fn 		displayOnOff
+	 * 	\brief		The method enables/disables the display 
+	 * 	\param[in]	satte passe the state to set the display to
+	 */
+    void displayOnOff(const bool& state);
 
 private:
 
-    void init(void)
-    {
-    	_displayFunction = MODE4BIT | MODE2LINE | MODE5x8DOTS;
-    
-    	expanderWrite(_backlightValue);
+	/**
+	 *	\fn 	init
+	 * 	\brief	The method initializes the communication to the display 
+	 */
+    void init(void);
 
-    	enter4bitMode(); 
 
-    	command(FUNCTIONSET | _displayFunction);
-    	_displayControl = DISPLAYON | CURSOROFF | BLINKOFF;
+	/**
+	 *	\fn 		sendAddress
+	 * 	\brief		The method sends the displays address to the I2C bus 
+	 * 	\todo		Fix the I2C library! 
+	 * 	\deprecated	
+	 */
+    void sendAddress(void);
 
-    	displayOnOff(1);
-    	clear();
-    	_displayMode = ENTRYLEFT | ENTRYSHIFTDECREMENT;
-    	command(ENTRYMODESET | _displayMode);
-    	home();
-    	backlightOnOff(1);
-    }
+	/**
+	 *	\fn 		expanderWrite
+	 * 	\brief		Basic communication method to address the display
+	 * 	\param[in]	value passes the byte to write
+	 */
+    void expanderWrite(const uint8_t& value);
 
-    void sendAddress(void)
-    {
-	    TWDR = _lcdAddress;
-	    TWCR = (1 << TWINT) | (1 << TWEN);
-	    while (!(TWCR & (1 << TWINT)));
-	    while ((TWSR & 0xF8) != 0x18);
-    }
+	/**
+	 *	\fn 		pulseEnable
+	 * 	\brief		The method toggles byte at index 2 while writing 
+	 * 	\param[in]	value passes the byte to write
+	 */
+    void pulseEnable(const uint8_t& value);
 
-    void expanderWrite(const uint8_t& value)
-    {
-        i2c_startCondition();
-	    sendAddress();
-	    i2c_sendData(value | _backlightValue);
-	    i2c_stopCondition();
-    }
+	/**
+	 *	\fn 		write4Bits
+	 * 	\brief		The method sends a nibble to the display
+	 * 	\param[in]	value passes the nibble to send in byte
+	 */
+    void write4bits(const uint8_t& value);
 
-    void pulseEnable(const uint8_t& _data)
-    {
-	    expanderWrite(_data | EN);
-	    _delay_us(1);
-	    expanderWrite(_data & ~EN);
-	    _delay_us(50);
-    }
+	/**	
+	 * 	\fn			send
+	 * 	\brief		The method sends a byte in a specific mode to the display
+	 * 	\param[in]	value passes the byte to send to the display
+	 * 	\param[in]	mode passes the operation mode to use
+	 */
+    void send(const uint8_t& value, const uint8_t& mode);
 
-    void write4bits(const uint8_t& value)
-    {
-	    expanderWrite(value);
-	    pulseEnable(value);
-    }
+	/**
+	 *	\fn 		command
+	 * 	\brief		The method executes a command on the display driver	
+	 * 	\param[in]	value passes the commands value to send
+	 */
+    void command(const uint8_t& value);
 
-    void send(const uint8_t& value, const uint8_t& mode)
-    {
-	    uint8_t highnib = value & 0xf0;
-	    uint8_t lownib = (value << 4) & 0xF0;
-	    write4bits((highnib) | mode);
-	    write4bits((lownib) | mode);
-    }
+	/**
+	 *	\fn 	leftToRight
+	 * 	\brief	The method specifies the writing direction (left to right)
+	 */
+    void leftToRight(void);
 
-    void command(const uint8_t& value)
-    {
-        send(value, 0);
-    }
+	/**
+	 *	\fn 	rightToLeft
+	 * 	\brief	The method specifies the writing direction (right to left)
+	 */	
+    void rightToLeft(void);
 
-    void leftToRight(void)
-    {
-    	_displayMode |= ENTRYLEFT;
-    	command(ENTRYMODESET | _displayMode);
-    }
+	/**
+	 *	\fn 	scrollDisplayLeft
+	 * 	\brief	The method scrolls the display to the left side
+	 */
+    void scrollDisplayLeft(void);
 
-    void rightToLeft(void)
-    {
-    	_displayMode &= ~ENTRYLEFT;
-    	command(ENTRYMODESET | _displayMode);
-    }
+	/**			
+	 *	\fn 	scrollDisplayRight
+	 * 	\brief	The method scrolls the display to the right side
+	 */
+    void scrollDisplayRight(void);
 
-    void scrollDisplayLeft(void)
-    {
-    	command(CURSORSHIFT | DISPLAYMOVE | MOVELEFT);
-    }
+	/**
+	 *	\fn 	leftJusitfy
+	 * 	\brief	The method justifies the text to the left side
+	 */
+    void leftJustify(void);
 
-    void scrollDisplayRight(void)
-    {
-    	command(CURSORSHIFT | DISPLAYMOVE | MOVERIGHT);
-    }
+	/**
+	 *	\fn 	rightJusitify
+	 * 	\brief	The method justifies the text to the right side
+	 */
+    void rightJustify(void);
 
-    void leftJustify(void)
-    {
-    	_displayMode &= ~ENTRYSHIFTINCREMENT;
-    	command(ENTRYMODESET | _displayMode);
-    }
-
-    void rightJustify(void)
-    {
-    	_displayMode |= ENTRYSHIFTINCREMENT;
-    	command(ENTRYMODESET | _displayMode);
-    }
-
-    void enter4bitMode(void)
-    {
-    	write4bits(0x03 << 4);
-    	_delay_us(4500);
-    	write4bits(0x03 << 4);
-    	_delay_us(4500);
-    	write4bits(0x03 << 4);
-    	_delay_us(150);
-    	write4bits(0x02 << 4);
-    }
+	/**
+	 *	\fn 	enter4bitMode
+	 * 	\brief	The method specifies the 4 bit communication to the display driver
+	 */
+    void enter4bitMode(void);
 
 private:
 
+	/**
+	 *	\var 	_lcdAddress
+	 * 	\brief	The displays I2C address
+	 * 	\value	0x4e
+	 */
 	const uint8_t _lcdAddress = (0x27 << 1) & 0xfe;
+	
+	/**
+	 *	\var	_rowCount 
+	 * 	\brief	The displays count of rows
+	 * 	\value	2
+	 */
 	const uint8_t _rowCount = 2;
+	
+	/**
+	 *	\var 	_columnCount
+	 * 	\brief	The displays count of columns
+	 * 	\value	16
+	 */
 	const uint8_t _columnCount = 16;
 
-	uint8_t _backlightValue = BACKLIGHT;								
+	/**
+	 *	\var 	_backlightValue	
+	 * 	\brief	The stored backlighting setting
+	 * 	\value	Default: 0x08 (BACKLIGHT)
+	 */
+	uint8_t _backlightValue = BACKLIGHT;
+	
+	/**
+	 *	\var 	_displayControl
+	 * 	\brief	The stored display control settings
+	 * 	\value	Default: 0x04 (DISPLAYON)
+	 */								
 	uint8_t _displayControl = DISPLAYON | CURSOROFF | BLINKOFF; 
-	uint8_t _displayMode 	= ENTRYLEFT | ENTRYSHIFTDECREMENT;			
-	uint8_t _displayFunction;
+	
+	/**
+	 *	\var 	_displayMode
+	 * 	\brief	The stored display mode settings
+	 * 	\value	Default: 0x02 (ENTRYLEFT)
+	 */
+	uint8_t _displayMode = ENTRYLEFT | ENTRYSHIFTDECREMENT;		
+	
+	/**
+	 *	\var 	_displayFunction
+	 * 	\brief	The stored display function settings
+	 * 	\value	Default: 0x00
+	 */	
+	uint8_t _displayFunction = 0x00;
 
-	const static inline uint8_t CLEARDISPLAY	 	  = 0x01;
-	const static inline uint8_t RETURNHOME	 	  	  = 0x02;
-	const static inline uint8_t ENTRYMODESET	 	  = 0x04;
-	const static inline uint8_t DISPLAYCONTROL 	  	  = 0x08;
-	const static inline uint8_t CURSORSHIFT	 	  	  = 0x10;
-	const static inline uint8_t FUNCTIONSET	 	  	  = 0x20;
-	const static inline uint8_t SETCGRAMADDR	 	  = 0x40;
-	const static inline uint8_t SETDDRAMADDR	 	  = 0x80;
-	const static inline uint8_t ENTRYRIGHT	 	  	  = 0x00;
-	const static inline uint8_t ENTRYLEFT		 	  = 0x02;
-	const static inline uint8_t ENTRYSHIFTINCREMENT   = 0x01;
-	const static inline uint8_t ENTRYSHIFTDECREMENT   = 0x00;
-	const static inline uint8_t DISPLAYON	 		  = 0x04;
-	const static inline uint8_t DISPLAYOFF 		   	  = 0x00;
-	const static inline uint8_t CURSORON	 		  = 0x02;
-	const static inline uint8_t CURSOROFF	 		  = 0x00;
-	const static inline uint8_t BLINKON	 		  	  = 0x01;
-	const static inline uint8_t BLINKOFF	 		  = 0x00;
-	const static inline uint8_t DISPLAYMOVE 		  = 0x08;
-	const static inline uint8_t CURSORMOVE  		  = 0x00;
-	const static inline uint8_t MOVERIGHT	  		  = 0x04;
-	const static inline uint8_t MOVELEFT	  		  = 0x00;
-	const static inline uint8_t MODE8BIT 			  = 0x10;
-	const static inline uint8_t MODE4BIT 			  = 0x00;
-	const static inline uint8_t MODE2LINE	   		  = 0x08;
-	const static inline uint8_t MODE1LINE	   		  = 0x00;
-	const static inline uint8_t MODE5x10DOTS 		  = 0x04;
-	const static inline uint8_t MODE5x8DOTS  		  = 0x00;
-	const static inline uint8_t BACKLIGHT	  		  = 0x08;
-	const static inline uint8_t NOBACKLIGHT 		  = 0x00;
+	/**
+	 *	\var 	CLEARDISPLAY
+	 * 	\brief	The command to clear the display
+	 * 	\value	0x01
+	 */
+	const static inline uint8_t CLEARDISPLAY = 0x01;
+	
+	/**
+	 *	\var 	RETURNHOME
+	 * 	\brief	The command to return the display to home 
+	 * 	\value	0x02
+	 */
+	const static inline uint8_t RETURNHOME = 0x02;
+	
+	/**
+	 *	\var 	ENTRYMODESET
+	 * 	\brief	The command to set the entry mode
+	 * 	\value	0x04
+	 */
+	const static inline uint8_t ENTRYMODESET = 0x04;
+	
+	/**
+	 *	\var 	DISPLAYCONTROL
+	 * 	\brief	The display control addressing command
+	 * 	\value	0x08
+	 */
+	const static inline uint8_t DISPLAYCONTROL = 0x08;
+	
+	/**
+	 *	\var 	CURSORSHIFT
+	 * 	\brief	The cursor shift addressing command
+	 * 	\value	0x10
+	 */
+	const static inline uint8_t CURSORSHIFT = 0x10;
+	
+	/**
+	 *	\var 	FUNCTIONSET
+	 * 	\brief	The functionset addressing command
+	 * 	\value
+	 */
+	const static inline uint8_t FUNCTIONSET	= 0x20;
+	
+	/**
+	 *	\var 	SETCGRAMADDR
+	 * 	\brief	The CGRAM addressing selector command
+	 * 	\value	0x40
+	 */
+	const static inline uint8_t SETCGRAMADDR = 0x40;
+	
+	/**
+	 *	\var 	SETDDRAMADDR
+	 * 	\brief	The DDRAM addressing selector command
+	 * 	\value	0x80
+	 */
+	const static inline uint8_t SETDDRAMADDR = 0x80;
+	
+	/**
+	 *	\var 	ENTRYRIGHT
+	 * 	\brief	The command to specify the entry from the right side
+	 * 	\value	0x00
+	 */
+	const static inline uint8_t ENTRYRIGHT = 0x00;
+	
+	/**
+	 *	\var 	ENTRYLEFT
+	 * 	\brief	The command to specify the entry from the left side
+	 * 	\value	0x02
+	 */
+	const static inline uint8_t ENTRYLEFT = 0x02;
+	
+	/**
+	 *	\var 	ENTYRSHIFTDECREMENT
+	 * 	\brief	The command specifies the cursors shift behavior 
+	 * 	\value	0x01
+	 */
+	const static inline uint8_t ENTRYSHIFTINCREMENT = 0x01;
+	
+	/**
+	 *	\var 	ENTRYSHIFTDECREMENT
+	 * 	\brief	The command specifies the cursors shift behavior
+	 * 	\value	0x00
+	 */
+	const static inline uint8_t ENTRYSHIFTDECREMENT = 0x00;
+	
+	/**
+	 *	\var 	DISPLAYON
+	 * 	\brief	The command to activate the display
+	 * 	\value	0x04
+	 */
+	const static inline uint8_t DISPLAYON = 0x04;
+	
+	/**
+	 *	\var 	DISPLAYOFF
+	 * 	\brief	The command to deactivate the display
+	 * 	\value	0x00
+	 */
+	const static inline uint8_t DISPLAYOFF = 0x00;
+	
+	/**
+	 *	\var 	CURSORON
+	 * 	\brief	The command to activate the cursor
+	 * 	\value	0x02
+	 */
+	const static inline uint8_t CURSORON = 0x02;
+	
+	/**
+	 *	\var 	CURSOROFF
+	 * 	\brief	The command to deactivate the cursor
+	 * 	\value	0x00
+	 */
+	const static inline uint8_t CURSOROFF = 0x00;
+	
+	/**
+	 *	\var 	BLINKON
+	 * 	\brief	The command to activate displays blinking
+	 * 	\value	0x01
+	 */
+	const static inline uint8_t BLINKON = 0x01;
+	
+	/**	
+	 *	\var 	BLINKOFF
+	 * 	\brief	The command to deactivate displays blinking
+	 * 	\value	0x00
+	 */
+	const static inline uint8_t BLINKOFF = 0x00;
+	
+	/**
+	 *	\var 	DISPLAYMOVE
+	 * 	\brief	The command to move the display page
+	 * 	\value	0x08
+	 */
+	const static inline uint8_t DISPLAYMOVE = 0x08;
+	
+	/**
+	 *	\var 	CURSORMOVE
+	 * 	\brief	The command to move the cursor
+	 * 	\value	0x00
+	 */
+	const static inline uint8_t CURSORMOVE = 0x00;
+	
+	/**
+	 *	\var 	MOVERIGHT
+	 * 	\brief	The command to move to the right
+	 * 	\value	0x04
+	 */
+	const static inline uint8_t MOVERIGHT = 0x04;
+	
+	/**
+	 *	\var 	MOVELEFT
+	 * 	\brief	The command to move to the left
+	 * 	\value	0x00
+	 */
+	const static inline uint8_t MOVELEFT = 0x00;
+	
+	/**
+	 *	\var 	MODE8BIT
+	 * 	\brief	The command to select 8 bit mode
+	 * 	\value	0x10
+	 */
+	const static inline uint8_t MODE8BIT = 0x10;
+	
+	/**
+	 *	\var 	MODE4BIT
+	 * 	\brief	The command to select 4 bit mode
+	 * 	\value	0x00
+	 */
+	const static inline uint8_t MODE4BIT = 0x00;
+	
+	/**
+	 *	\var 	MODE2LINE
+	 * 	\brief	The command to select two line preset
+	 * 	\value	0x08
+	 */
+	const static inline uint8_t MODE2LINE = 0x08;
+	
+	/**
+	 *	\var 	MODE1LINE
+	 * 	\brief	The command to select one line preset
+	 * 	\value	0x00
+	 */
+	const static inline uint8_t MODE1LINE = 0x00;
+	
+	/**
+	 *	\var 	MODE5x1DOTS
+	 * 	\brief	The command to select 5x1DOT preset
+	 * 	\value	0x04
+	 */
+	const static inline uint8_t MODE5x10DOTS = 0x04;
+	
+	/**
+	 *	\var 	MODE5x8DOTS
+	 * 	\brief	The command to select MODE5x8DOTS preset
+	 * 	\value	0x00
+	 */
+	const static inline uint8_t MODE5x8DOTS = 0x00;
+	
+	/**
+	 *	\var 	BACKLIGHT
+	 * 	\brief	The command to enable backlighting
+	 * 	\value	0x08
+	 */
+	const static inline uint8_t BACKLIGHT = 0x08;
+	
+	/**
+	 *	\var 	NOBACKLIGHTING
+	 * 	\brief	The command to disable backlight
+	 * 	\value	0x00
+	 */
+	const static inline uint8_t NOBACKLIGHT = 0x00;
+	
+	/**
+	 *	\var 	EN
+	 * 	\brief	The bitmask for pulseEnable
+	 * 	\value  0x04
+	 */
 	
 	const static inline uint8_t EN = 0b00000100;
+	
+	/**
+	 *	\var 	RW
+	 * 	\brief	The bitmask to specify read/write access
+	 * 	\value	0x02
+	 */
 	const static inline uint8_t RW = 0b00000010;
+	
+	/**
+	 *	\var 	RS
+	 * 	\brief	The bitmask to print character
+	 * 	\value	0x01
+	 */
 	const static inline uint8_t RS = 0b00000001;
 };
 
