@@ -1,0 +1,72 @@
+\doxysection{vector\+\_\+container.\+hpp}
+\hypertarget{vector__container_8hpp_source}{}\label{vector__container_8hpp_source}\index{lib/Vector\_header\_only/vector\_container.hpp@{lib/Vector\_header\_only/vector\_container.hpp}}
+\mbox{\hyperlink{vector__container_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ \_\_VECTOR\_CONTAINER\_HPP\_\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_\_VECTOR\_CONTAINER\_HPP\_\_}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vector__heap_8hpp}{vector\_heap.hpp}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vector__element_8hpp}{vector\_element.hpp}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ContentType>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector_container}{VectorContainer}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_vector_container_a8f2190b9f9d7adaf16082cc74e712e35}{VectorContainer}}(\textcolor{keywordtype}{void})\ :\ \_headOfStack(nullptr)}
+\DoxyCodeLine{00027\ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector_container_ac8f5e1a7227b343f808c9b343eaafb66}{append}}(\textcolor{keyword}{const}\ ContentType\ value)}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector_element}{VectorElement<ContentType>}}\ *newElement\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_vector_element}{VectorElement<ContentType>}}(value,\ \_headOfStack);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \_headOfStack\ =\ newElement;}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00046\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{class_vector_container_a0acc5d5baa18968f9a3fdaff91ec578f}{length}}(\textcolor{keywordtype}{void})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00047\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ uint8\_t\ loopIterations\ =\ 0;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector_element}{VectorElement<ContentType>}}\ *nextElement\ =\ \_headOfStack;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (nextElement)}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ nextElement\ =\ nextElement-\/>\mbox{\hyperlink{class_vector_element_ab0813fc12a35023b59a4ab5df2537ea1}{getNextElement}}();}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ loopIterations++;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ loopIterations;}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00064\ \ \ \ \ ContentType\&\ \mbox{\hyperlink{class_vector_container_a65ab6016104c42bb220b1401731fa947}{at}}(\textcolor{keyword}{const}\ uint8\_t\ \&index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00065\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector_element}{VectorElement<ContentType>}}\ *targetElement\ =\ elementAt(index);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ targetElement-\/>\mbox{\hyperlink{class_vector_element_a15998f135ca9ee1726eb8b8484cb8295}{getContent}}();}
+\DoxyCodeLine{00068\ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_vector_container_a22e8843e67eb96abe5fa999c10472367}{deleteAll}}(\textcolor{keywordtype}{void})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ elementCount\ =\ \mbox{\hyperlink{class_vector_container_a0acc5d5baa18968f9a3fdaff91ec578f}{length}}();}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ elementCount;\ i++)}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector_element}{VectorElement<ContentType>}}\ *elementPointer\ =\ elementAt(i);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ elementPointer;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \_headOfStack\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{class_vector_element}{VectorElement<ContentType>}}\ *elementAt(\textcolor{keyword}{const}\ uint8\_t\ \&index)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00093\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ itertaionsFromTop\ =\ \mbox{\hyperlink{class_vector_container_a0acc5d5baa18968f9a3fdaff91ec578f}{length}}()\ -\/\ index\ -\/\ 1;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector_element}{VectorElement<ContentType>}}\ *elementPointer\ =\ \_headOfStack;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ itertaionsFromTop;\ i++)}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ elementPointer\ =\ elementPointer-\/>\mbox{\hyperlink{class_vector_element_ab0813fc12a35023b59a4ab5df2537ea1}{getNextElement}}();}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ elementPointer;}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{class_vector_element}{VectorElement<ContentType>}}\ *\_headOfStack;}
+\DoxyCodeLine{00108\ \};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\_\_VECTOR\_CONTAINER\_HPP\_\_}}
+
+\end{DoxyCode}

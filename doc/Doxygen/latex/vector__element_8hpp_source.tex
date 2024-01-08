@@ -1,0 +1,35 @@
+\doxysection{vector\+\_\+element.\+hpp}
+\hypertarget{vector__element_8hpp_source}{}\label{vector__element_8hpp_source}\index{lib/Vector\_header\_only/vector\_element.hpp@{lib/Vector\_header\_only/vector\_element.hpp}}
+\mbox{\hyperlink{vector__element_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ \_\_VECTOR\_ELEMENT\_HPP\_\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_\_VECTOR\_ELEMENT\_HPP\_\_}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ContentType>}
+\DoxyCodeLine{00017\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector_element}{VectorElement}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_vector_element_ac033174f3f7721be0005f4d94157ac61}{VectorElement}}(\textcolor{keyword}{const}\ ContentType\ content,\ \mbox{\hyperlink{class_vector_element}{VectorElement}}\ *nextElement)\ :\ \_content(content),\ \_nextElement(nextElement)}
+\DoxyCodeLine{00027\ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00035\ \ \ \ \ ContentType\&\ \mbox{\hyperlink{class_vector_element_a15998f135ca9ee1726eb8b8484cb8295}{getContent}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_content;}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_vector_element}{VectorElement}}\ *\mbox{\hyperlink{class_vector_element_ab0813fc12a35023b59a4ab5df2537ea1}{getNextElement}}(\textcolor{keywordtype}{void})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00046\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_nextElement;}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00055\ \ \ \ \ ContentType\ \_content;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{class_vector_element}{VectorElement}}\ *\_nextElement;}
+\DoxyCodeLine{00062\ \};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\_\_VECTOR\_ELEMENT\_HPP\_\_}}
+
+\end{DoxyCode}

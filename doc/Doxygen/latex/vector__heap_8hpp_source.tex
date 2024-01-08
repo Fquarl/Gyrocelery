@@ -1,0 +1,36 @@
+\doxysection{vector\+\_\+heap.\+hpp}
+\hypertarget{vector__heap_8hpp_source}{}\label{vector__heap_8hpp_source}\index{lib/Vector\_header\_only/vector\_heap.hpp@{lib/Vector\_header\_only/vector\_heap.hpp}}
+\mbox{\hyperlink{vector__heap_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ \_\_VECTOR\_HEAP\_HPP\_\_}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ \_\_VECTOR\_HEAP\_HPP\_\_}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespace_h_e_a_p___s_e_t_t_i_n_g_s}{HEAP\_SETTINGS}}}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{constexpr}\ uint16\_t\ \mbox{\hyperlink{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a08514c576bac925716a48d8f768bf672}{totalLenghtOfSRAM}}\ =\ 0x800;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{constexpr}\ uint16\_t\ \mbox{\hyperlink{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a308bb337316a699b5cbb8c9a04e15bf4}{maxHeapSize}}\ =\ 0x100;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{size\_t}\&\ \mbox{\hyperlink{namespace_h_e_a_p___s_e_t_t_i_n_g_s_aee30de69c5a892f4b3eab3933b3b5117}{mallocMargin}}\ =\ \_\_malloc\_margin;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{char}*\&\ \mbox{\hyperlink{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a8ee05b1c8b1fa21858599cc188d4ed39}{mallocHeapStart}}\ =\ \_\_malloc\_heap\_start;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{char}*\&\ \mbox{\hyperlink{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a4999f5984e0e27be4ecdd4a3ecf6fa5c}{mallocHeapEnd}}\ =\ \_\_malloc\_heap\_end;}
+\DoxyCodeLine{00053\ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}*\ \textcolor{keyword}{operator}\ \textcolor{keyword}{new}(\textcolor{keywordtype}{size\_t}\ size)}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{return}\ malloc(size);}
+\DoxyCodeLine{00064\ \}}
+\DoxyCodeLine{00065\ \ \ \ \ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{operator}\ \textcolor{keyword}{delete}(\textcolor{keywordtype}{void}*\ ptr)}
+\DoxyCodeLine{00072\ \{\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ free(ptr);}
+\DoxyCodeLine{00074\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\_\_VECTOR\_HEAP\_HPP\_\_}}
+
+\end{DoxyCode}

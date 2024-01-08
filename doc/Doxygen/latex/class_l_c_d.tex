@@ -1,0 +1,144 @@
+\doxysection{LCD Class Reference}
+\hypertarget{class_l_c_d}{}\label{class_l_c_d}\index{LCD@{LCD}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_l_c_d_a3d7904f98c26c3e2b296e2ddadff004e}\label{class_l_c_d_a3d7904f98c26c3e2b296e2ddadff004e} 
+{\bfseries LCD} (void)
+\begin{DoxyCompactList}\small\item\em The constructor initializes the instance of type \textquotesingle{}\doxylink{class_l_c_d}{LCD}\textquotesingle{}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_l_c_d_aa8c99e765b9b7dd88e3295d47c172889}{print\+Formatted}} (const \mbox{\hyperlink{class_vector}{Vector}}$<$ char $>$ \&text)
+\begin{DoxyCompactList}\small\item\em The method prints a formatted string vector on the display. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_l_c_d_a0f41848472078d3083ec52751ea862c2}{print}} (char text\mbox{[}32\mbox{]})
+\begin{DoxyCompactList}\small\item\em The method prints a C string on the display. \end{DoxyCompactList}\item 
+\Hypertarget{class_l_c_d_a929490f2df1f6b82a6f0613d0ff6a02b}\label{class_l_c_d_a929490f2df1f6b82a6f0613d0ff6a02b} 
+void {\bfseries home} (void)
+\begin{DoxyCompactList}\small\item\em The method makes the display return home position. \end{DoxyCompactList}\item 
+\Hypertarget{class_l_c_d_a22be760ad38c53befd292409b54424bf}\label{class_l_c_d_a22be760ad38c53befd292409b54424bf} 
+void {\bfseries clear} (void)
+\begin{DoxyCompactList}\small\item\em The method clears the display. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_l_c_d_a094b2a707f2e49f46b6cac992f4b7d0b}{set\+Cursor}} (const uint8\+\_\+t \&column\+Index, const uint8\+\_\+t \&row\+Index)
+\begin{DoxyCompactList}\small\item\em The method sets the cursor where the next char gets printed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_l_c_d_ad9e203a40e420f56d15c2bf833d17671}{backlight\+On\+Off}} (const bool \&state)
+\begin{DoxyCompactList}\small\item\em The method enables/disables the backlight of the display. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_l_c_d_a723ed8290935bfeb24d7d175371e9244}{blink\+On\+Off}} (const bool \&state)
+\begin{DoxyCompactList}\small\item\em The method enables/disables the blink of the display. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_l_c_d_a5dd0f59d86695468934e72afe5efca82}{cursor\+On\+Off}} (const bool \&state)
+\begin{DoxyCompactList}\small\item\em The method enables/disbales the cursor of the display. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_l_c_d_ad7a143d72af7a2ffdd98ec07a763bb02}{display\+On\+Off}} (const bool \&state)
+\begin{DoxyCompactList}\small\item\em The method enables/disables the display. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_l_c_d_ad9e203a40e420f56d15c2bf833d17671}\label{class_l_c_d_ad9e203a40e420f56d15c2bf833d17671} 
+\index{LCD@{LCD}!backlightOnOff@{backlightOnOff}}
+\index{backlightOnOff@{backlightOnOff}!LCD@{LCD}}
+\doxysubsubsection{\texorpdfstring{backlightOnOff()}{backlightOnOff()}}
+{\footnotesize\ttfamily LCD\+::backlight\+On\+Off (\begin{DoxyParamCaption}\item[{const bool \&}]{state }\end{DoxyParamCaption})}
+
+
+
+The method enables/disables the backlight of the display. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em state} & passes the state to set the backlighting to \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_l_c_d_a723ed8290935bfeb24d7d175371e9244}\label{class_l_c_d_a723ed8290935bfeb24d7d175371e9244} 
+\index{LCD@{LCD}!blinkOnOff@{blinkOnOff}}
+\index{blinkOnOff@{blinkOnOff}!LCD@{LCD}}
+\doxysubsubsection{\texorpdfstring{blinkOnOff()}{blinkOnOff()}}
+{\footnotesize\ttfamily LCD\+::blink\+On\+Off (\begin{DoxyParamCaption}\item[{const bool \&}]{state }\end{DoxyParamCaption})}
+
+
+
+The method enables/disables the blink of the display. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em state} & passes the state to set the blink to \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_l_c_d_a5dd0f59d86695468934e72afe5efca82}\label{class_l_c_d_a5dd0f59d86695468934e72afe5efca82} 
+\index{LCD@{LCD}!cursorOnOff@{cursorOnOff}}
+\index{cursorOnOff@{cursorOnOff}!LCD@{LCD}}
+\doxysubsubsection{\texorpdfstring{cursorOnOff()}{cursorOnOff()}}
+{\footnotesize\ttfamily LCD\+::cursor\+On\+Off (\begin{DoxyParamCaption}\item[{const bool \&}]{state }\end{DoxyParamCaption})}
+
+
+
+The method enables/disbales the cursor of the display. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em state} & passes the state to set the cursor visibility to \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_l_c_d_ad7a143d72af7a2ffdd98ec07a763bb02}\label{class_l_c_d_ad7a143d72af7a2ffdd98ec07a763bb02} 
+\index{LCD@{LCD}!displayOnOff@{displayOnOff}}
+\index{displayOnOff@{displayOnOff}!LCD@{LCD}}
+\doxysubsubsection{\texorpdfstring{displayOnOff()}{displayOnOff()}}
+{\footnotesize\ttfamily LCD\+::display\+On\+Off (\begin{DoxyParamCaption}\item[{const bool \&}]{state }\end{DoxyParamCaption})}
+
+
+
+The method enables/disables the display. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em satte} & passe the state to set the display to \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_l_c_d_a0f41848472078d3083ec52751ea862c2}\label{class_l_c_d_a0f41848472078d3083ec52751ea862c2} 
+\index{LCD@{LCD}!print@{print}}
+\index{print@{print}!LCD@{LCD}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily LCD\+::print (\begin{DoxyParamCaption}\item[{char}]{text\mbox{[}32\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+The method prints a C string on the display. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em text} & passes the characters as a C string \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_l_c_d_aa8c99e765b9b7dd88e3295d47c172889}\label{class_l_c_d_aa8c99e765b9b7dd88e3295d47c172889} 
+\index{LCD@{LCD}!printFormatted@{printFormatted}}
+\index{printFormatted@{printFormatted}!LCD@{LCD}}
+\doxysubsubsection{\texorpdfstring{printFormatted()}{printFormatted()}}
+{\footnotesize\ttfamily LCD\+::print\+Formatted (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vector}{Vector}}$<$ char $>$ \&}]{text }\end{DoxyParamCaption})}
+
+
+
+The method prints a formatted string vector on the display. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em text} & passes the ccharacters in a custom vector \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_l_c_d_a094b2a707f2e49f46b6cac992f4b7d0b}\label{class_l_c_d_a094b2a707f2e49f46b6cac992f4b7d0b} 
+\index{LCD@{LCD}!setCursor@{setCursor}}
+\index{setCursor@{setCursor}!LCD@{LCD}}
+\doxysubsubsection{\texorpdfstring{setCursor()}{setCursor()}}
+{\footnotesize\ttfamily LCD\+::set\+Cursor (\begin{DoxyParamCaption}\item[{const uint8\+\_\+t \&}]{column\+Index,  }\item[{const uint8\+\_\+t \&}]{row\+Index }\end{DoxyParamCaption})}
+
+
+
+The method sets the cursor where the next char gets printed. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em column\+Index} & passes the x position to set the cursor to \\
+\hline
+\mbox{\texttt{ in}}  & {\em row\+Index} & passes the y position to set the cursor to \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Display/lcd.\+hpp\item 
+lib/\+Display/lcd.\+cpp\end{DoxyCompactItemize}

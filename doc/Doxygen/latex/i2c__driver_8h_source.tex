@@ -1,0 +1,55 @@
+\doxysection{i2c\+\_\+driver.\+h}
+\hypertarget{i2c__driver_8h_source}{}\label{i2c__driver_8h_source}\index{lib/i2c\_driver/i2c\_driver.h@{lib/i2c\_driver/i2c\_driver.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ TODO:\ Setupfunktion\ für\ i2c}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ TODO:\ Fehlerstatus\ aus\ TWSR\ erkennen,\ statt\ nur\ mit\ while\ zu\ warten}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#ifndef\ I2C\_DRIVER\_H}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ I2C\_DIVER\_H}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <avr/io.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keywordtype}{void}\ i2c\_pfusch();}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{void}\ i2c\_init();}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{void}\ i2c\_startCondition();}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ i2c\_repeatedStartCondition();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00036\ \textcolor{keywordtype}{void}\ i2c\_stopCondition();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00044\ \textcolor{keywordtype}{int}\ i2c\_sendAddressWrite(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ address);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00052\ \textcolor{keywordtype}{int}\ i2c\_sendAddressRead(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ address);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00059\ \textcolor{keywordtype}{int}\ i2c\_sendData(\textcolor{keywordtype}{int}\ data);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00067\ \textcolor{keywordtype}{void}\ i2c\_writeByte(\textcolor{keywordtype}{int}\ \_byte);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00076\ \textcolor{keywordtype}{int}\ i2c\_readByte(\textcolor{keywordtype}{bool}\ continueTransfer\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00086\ \textcolor{keywordtype}{int}\ i2c\_writeWord(\textcolor{keywordtype}{int}\ address,\ \textcolor{keywordtype}{int}\ peripheralRegister,\ \textcolor{keywordtype}{int}\ data);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00096\ \textcolor{keywordtype}{int}\ i2c\_readWord(\textcolor{keywordtype}{int}\ address,\ \textcolor{keywordtype}{int}\ peripheralRegister,\ \textcolor{keywordtype}{char}*\ data);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00106\ \textcolor{keywordtype}{int}\ i2c\_readDWord(\textcolor{keywordtype}{int}\ address,\ \textcolor{keywordtype}{int}\ peripheralRegister,\ \textcolor{keywordtype}{int}*\ data);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00117\ \textcolor{keywordtype}{int}\ i2c\_readNDwords(\textcolor{keywordtype}{int}\ address,\ \textcolor{keywordtype}{int}\ startRegister,\ \textcolor{keywordtype}{int}*\ dataArray,\ \textcolor{keywordtype}{int}\ len);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

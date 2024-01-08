@@ -1,0 +1,51 @@
+\doxysection{vector.\+hpp}
+\hypertarget{vector_8hpp_source}{}\label{vector_8hpp_source}\index{lib/Vector\_header\_only/vector.hpp@{lib/Vector\_header\_only/vector.hpp}}
+\mbox{\hyperlink{vector_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ \_\_VECTOR\_HPP\_\_}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ \_\_VECTOR\_HPP\_\_}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vector__container_8hpp}{vector\_container.hpp}}"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_vector}{Vector}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_vector_container}{VectorContainer}}<T>}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_vector_abd883e8ec6e3452f1e36484c9844048d}{Vector}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00024\ \ \ \ \ \{}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_vector_abd883e8ec6e3452f1e36484c9844048d}{Vector}}(T\ initializationParameter)}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector_container_ac8f5e1a7227b343f808c9b343eaafb66}{VectorContainer<T>::append}}(initializationParameter);}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00044\ \ \ \ \ T\&\ operator\ [](\textcolor{keyword}{const}\ uint8\_t\ \&index)}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_vector_container_a65ab6016104c42bb220b1401731fa947}{VectorContainer<T>::at}}(index);}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ operator\ <<(\textcolor{keyword}{const}\ T\ value)}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector_container_ac8f5e1a7227b343f808c9b343eaafb66}{VectorContainer<T>::append}}(value);}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ operator\ <<(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keywordtype}{string})}
+\DoxyCodeLine{00066\ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ uint8\_t\ iterator\ =\ 0x00;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ currentChar\ =\ 0xff;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (currentChar\ !=\ 0x00)}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_vector_container_ac8f5e1a7227b343f808c9b343eaafb66}{VectorContainer<T>::append}}(\textcolor{keywordtype}{string}[iterator]);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ currentChar\ =\ \textcolor{keywordtype}{string}[iterator];}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ iterator++;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\_\_VECTOR\_HPP\_\_}}
+
+\end{DoxyCode}

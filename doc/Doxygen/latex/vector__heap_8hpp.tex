@@ -1,0 +1,41 @@
+\doxysection{lib/\+Vector\+\_\+header\+\_\+only/vector\+\_\+heap.hpp File Reference}
+\hypertarget{vector__heap_8hpp}{}\label{vector__heap_8hpp}\index{lib/Vector\_header\_only/vector\_heap.hpp@{lib/Vector\_header\_only/vector\_heap.hpp}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_h_e_a_p___s_e_t_t_i_n_g_s}{HEAP\+\_\+\+SETTINGS}}
+\begin{DoxyCompactList}\small\item\em The namespace contains constants for use of the AVR\textquotesingle{}s heap. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{vector__heap_8hpp_a160dcabc54bbecfc69484678cafadb81}\label{vector__heap_8hpp_a160dcabc54bbecfc69484678cafadb81} 
+void \texorpdfstring{$\ast$}{*} {\bfseries operator new} (size\+\_\+t size)
+\item 
+\Hypertarget{vector__heap_8hpp_a3d97a7e2a0208075b4b37328c96ed390}\label{vector__heap_8hpp_a3d97a7e2a0208075b4b37328c96ed390} 
+void {\bfseries operator delete} (void \texorpdfstring{$\ast$}{*}ptr)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a08514c576bac925716a48d8f768bf672}\label{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a08514c576bac925716a48d8f768bf672} 
+constexpr uint16\+\_\+t {\bfseries HEAP\+\_\+\+SETTINGS\+::total\+Lenght\+Of\+SRAM} = 0x800
+\begin{DoxyCompactList}\small\item\em The constant specifies the total count of bytes on the SRAM \textbackslash{}value 0x800. \end{DoxyCompactList}\item 
+\Hypertarget{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a308bb337316a699b5cbb8c9a04e15bf4}\label{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a308bb337316a699b5cbb8c9a04e15bf4} 
+constexpr uint16\+\_\+t {\bfseries HEAP\+\_\+\+SETTINGS\+::max\+Heap\+Size} = 0x100
+\begin{DoxyCompactList}\small\item\em The constant specifies the maximum size of the heap on the SRAM \textbackslash{}value 0x100. \end{DoxyCompactList}\item 
+constexpr size\+\_\+t \& \mbox{\hyperlink{namespace_h_e_a_p___s_e_t_t_i_n_g_s_aee30de69c5a892f4b3eab3933b3b5117}{HEAP\+\_\+\+SETTINGS\+::malloc\+Margin}} = \+\_\+\+\_\+malloc\+\_\+margin
+\begin{DoxyCompactList}\small\item\em The constant references \+\_\+\+\_\+malloc\+\_\+margin to define the minimum margin to the stack \textbackslash{}value Default value is 0x20. \end{DoxyCompactList}\item 
+constexpr char \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a8ee05b1c8b1fa21858599cc188d4ed39}{HEAP\+\_\+\+SETTINGS\+::malloc\+Heap\+Start}} = \+\_\+\+\_\+malloc\+\_\+heap\+\_\+start
+\begin{DoxyCompactList}\small\item\em The constant references \+\_\+\+\_\+malloc\+\_\+heap\+\_\+start to point to the heap\textquotesingle{}s start byte. \end{DoxyCompactList}\item 
+constexpr char \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a4999f5984e0e27be4ecdd4a3ecf6fa5c}{HEAP\+\_\+\+SETTINGS\+::malloc\+Heap\+End}} = \+\_\+\+\_\+malloc\+\_\+heap\+\_\+end
+\begin{DoxyCompactList}\small\item\em The constant references \+\_\+\+\_\+malloc\+\_\+heap\+\_\+end to point to the heap\textquotesingle{}s maximum byte position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyNote}{Note}
+Do not include this file directly! 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\href{https://onlinedocs.microchip.com/pr/GUID-317042D4-BCCE-4065-BB05-AC4312DBC2C4-en-US-2/index.html?GUID-27757112-8BE1-49C2-B023-CD94AD06C5E2}{\texttt{ https\+://onlinedocs.\+microchip.\+com/pr/\+GUID-\/317042\+D4-\/\+BCCE-\/4065-\/\+BB05-\/\+AC4312\+DBC2\+C4-\/en-\/\+US-\/2/index.\+html?\+GUID-\/27757112-\/8\+BE1-\/49\+C2-\/\+B023-\/\+CD94\+AD06\+C5\+E2}} 
+\end{DoxySeeAlso}

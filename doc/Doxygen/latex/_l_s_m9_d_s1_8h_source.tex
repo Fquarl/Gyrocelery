@@ -1,0 +1,87 @@
+\doxysection{LSM9\+DS1.\+h}
+\hypertarget{_l_s_m9_d_s1_8h_source}{}\label{_l_s_m9_d_s1_8h_source}\index{lib/LSM9DS1/LSM9DS1.h@{lib/LSM9DS1/LSM9DS1.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ LSM9DS1\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ LSM9DS1\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}LSM9DS1\_Registers.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ MaxInt\ 0x7FFF}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_accel_prescale}{AccelPrescale}}\ \{}
+\DoxyCodeLine{00013\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ prescale2g\ =\ 0b00;}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ prescale4g\ =\ 0b10;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ prescale8g\ =\ 0b11;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ prescale16g\ =\ 0b01;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ factors[4];}
+\DoxyCodeLine{00019\ \};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_gyro_prescale}{GyroPrescale}}\ \{}
+\DoxyCodeLine{00026\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ prescale245dps\ =\ 0b00;}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ prescale500dps\ =\ 0b01;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ prescale2000dps\ =\ 0b11;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ factors[4];}
+\DoxyCodeLine{00031\ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classaccel_gyro_odr}{accelGyroOdr}}\ \{}
+\DoxyCodeLine{00038\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ODROff\ =\ 0b000;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ODR14\ \ =\ 0b001;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ODR59\ \ =\ 0b010;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ODR119\ =\ 0b011;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ODR238\ =\ 0b100;}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ODR476\ =\ 0b101;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ODR952\ =\ 0b110;}
+\DoxyCodeLine{00046\ \};}
+\DoxyCodeLine{00051\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinertial_module_data}{inertialModuleData}}\ \{}
+\DoxyCodeLine{00052\ \ \ \textcolor{keywordtype}{double}\ xAccel[32];}
+\DoxyCodeLine{00053\ \ \ \textcolor{keywordtype}{double}\ yAccel[32];}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordtype}{double}\ zAccel[32];}
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordtype}{double}\ yaw[32];}
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordtype}{double}\ roll[32];}
+\DoxyCodeLine{00057\ \ \ \textcolor{keywordtype}{double}\ pitch[32];}
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_l_s_m9_d_s1}{LSM9DS1}}\{}
+\DoxyCodeLine{00065\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{class_l_s_m9_d_s1}{LSM9DS1}}(\textcolor{keywordtype}{int}\ accelGyro\ =\ ACELGYRO\_ADR,\ \textcolor{keywordtype}{int}\ magneto\ =\ MAGNETO\_ADR);}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_l_s_m9_d_s1_a925871226ad548ccdb44ba0bf566baab}{softreset}}();\ \ \ \textcolor{comment}{//\ done}}
+\DoxyCodeLine{00079\ \textcolor{comment}{}\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_l_s_m9_d_s1_af3c12c72a2cf2f28a6c0798b3671c708}{setODR}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ ODR);\ \textcolor{comment}{//\ done}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_l_s_m9_d_s1_a3f4c1b680824e0c96545aeb206bc4cc4}{setAccelPrescale}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ scaler);\ \textcolor{comment}{//\ done}}
+\DoxyCodeLine{00094\ \textcolor{comment}{}\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_l_s_m9_d_s1_a5d0f73329efa25f2bc1903f31c9ce64e}{setGyroPrescale}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ scaler);\ \ \textcolor{comment}{//\ done}}
+\DoxyCodeLine{00100\ \textcolor{comment}{}\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_l_s_m9_d_s1_a320cf666b7f2965dab63ca7e2f8c0f40}{getGyroDataRaw}}(\textcolor{keywordtype}{int}*\ dataArray);}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_l_s_m9_d_s1_aa5fde907c7c7c97dd9e2042870d09546}{getGyroData}}(\textcolor{keywordtype}{double}*\ dataArray);}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_l_s_m9_d_s1_a3d8a38b0444e4be94d359788da03610d}{getAccelDataRaw}}(\textcolor{keywordtype}{int}*\ dataArray);}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{void}\ getAccelData(\textcolor{keywordtype}{double}*\ dataArray);}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_l_s_m9_d_s1_afa5eea85342ca051f136c158fc024ade}{getTotalAccel}}(\textcolor{keywordtype}{double}*\ existingData\ =\ 0);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{comment}{//\ void\ getSphericAccel(double*\ coords);}}
+\DoxyCodeLine{00132\ \textcolor{comment}{}\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_l_s_m9_d_s1_a1f336ea8cf16353611bd07adbcf01d11}{setFifoInterrupt}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{void}\ enableFifo(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_l_s_m9_d_s1_aa62914f07f404a67bc3154787dc85d9c}{readFifo}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00151\ \ \ \ \ \mbox{\hyperlink{structinertial_module_data}{inertialModuleData}}*\ \mbox{\hyperlink{class_l_s_m9_d_s1_a252e1501d5fdc0aeeb894e20e07d7d91}{getStoredData}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00154\ \ \ \ \ \mbox{\hyperlink{structinertial_module_data}{inertialModuleData}}*\ storedFifoData\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{structinertial_module_data}{inertialModuleData}}();}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordtype}{int}\ accelGyroAddr;}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{int}\ magnetoAddr;}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{int}\ accelPrescale\ =\ 2;}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{int}\ gyroPrescale\ =\ 245;}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{int}\ currentODR;}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordtype}{int}\ fifoMode\ =\ 0b110;\ \textcolor{comment}{//\ 0b110\ Continous\ Mode\ 0b001\ FIFO\ mode}}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{int}\ fifoThreshholdSize\ =\ 0b11111;\ \textcolor{comment}{//\ 32\ samples\ werden\ pro\ Achse\ gespeichert}}
+\DoxyCodeLine{00162\ \};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

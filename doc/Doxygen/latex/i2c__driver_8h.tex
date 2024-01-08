@@ -1,0 +1,152 @@
+\doxysection{lib/i2c\+\_\+driver/i2c\+\_\+driver.h File Reference}
+\hypertarget{i2c__driver_8h}{}\label{i2c__driver_8h}\index{lib/i2c\_driver/i2c\_driver.h@{lib/i2c\_driver/i2c\_driver.h}}
+{\ttfamily \#include $<$avr/io.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{i2c__driver_8h_a765d0d32864b0e457755575e162c9b4e}{I2\+C\+\_\+\+DIVER\+\_\+H}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{i2c__driver_8h_a64303230bf4843297e7ac37ac236ca04}{i2c\+\_\+init}} ()
+\begin{DoxyCompactList}\small\item\em This method initializes the i2c bus. Not register values are calculated. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{i2c__driver_8h_a93a01abc58beaae945d46cee86d9872c}{i2c\+\_\+pfusch}} ()
+\item 
+int \mbox{\hyperlink{i2c__driver_8h_a456f6c417d5e41e5e9000a734ba2b658}{i2c\+\_\+read\+Byte}} (bool continue\+Transfer=false)
+\item 
+int \mbox{\hyperlink{i2c__driver_8h_ad212363f60b39a41e45c7eb80b1248a2}{i2c\+\_\+read\+DWord}} (int address, int peripheral\+Register, int \texorpdfstring{$\ast$}{*}data)
+\item 
+int \mbox{\hyperlink{i2c__driver_8h_ad5b3c1d21aabd1a69e8e519fa3f2ca20}{i2c\+\_\+read\+NDwords}} (int address, int start\+Register, int \texorpdfstring{$\ast$}{*}data\+Array, int len)
+\item 
+int \mbox{\hyperlink{i2c__driver_8h_a1a56b07f2b736aadd4e2fdf58b655d3d}{i2c\+\_\+read\+Word}} (int address, int peripheral\+Register, char \texorpdfstring{$\ast$}{*}data)
+\item 
+void \mbox{\hyperlink{i2c__driver_8h_a07aa2fa7259ffde0a63300f98ccef57d}{i2c\+\_\+repeated\+Start\+Condition}} ()
+\begin{DoxyCompactList}\small\item\em The method sends a repeated start condition on the bus. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{i2c__driver_8h_aa8f5ce5adb8d76a6418b190c4927121e}{i2c\+\_\+send\+Address\+Read}} (const int address)
+\item 
+int \mbox{\hyperlink{i2c__driver_8h_abbe833f44925938a54baf2d22bba0a52}{i2c\+\_\+send\+Address\+Write}} (const int address)
+\item 
+int \mbox{\hyperlink{i2c__driver_8h_a2edb5565d5a8a3d8c2c2477cb79eb58f}{i2c\+\_\+send\+Data}} (int data)
+\item 
+void \mbox{\hyperlink{i2c__driver_8h_a85f8848a73f92f0448091bcf274e134a}{i2c\+\_\+start\+Condition}} ()
+\begin{DoxyCompactList}\small\item\em The method sends a start condition on the bus. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{i2c__driver_8h_a37ecdaee01f7c6d4e08f37b262c8ec9f}{i2c\+\_\+stop\+Condition}} ()
+\begin{DoxyCompactList}\small\item\em The method sends a stop condition on the bus. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{i2c__driver_8h_aa30b7a559b0a1b04e2939ac6a3daf1d5}{i2c\+\_\+write\+Byte}} (int \+\_\+byte)
+\item 
+int \mbox{\hyperlink{i2c__driver_8h_a3e0ff844beb34ef39d972333170e76d9}{i2c\+\_\+write\+Word}} (int address, int peripheral\+Register, int data)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{i2c__driver_8h_a765d0d32864b0e457755575e162c9b4e}\label{i2c__driver_8h_a765d0d32864b0e457755575e162c9b4e} 
+\index{i2c\_driver.h@{i2c\_driver.h}!I2C\_DIVER\_H@{I2C\_DIVER\_H}}
+\index{I2C\_DIVER\_H@{I2C\_DIVER\_H}!i2c\_driver.h@{i2c\_driver.h}}
+\doxysubsubsection{\texorpdfstring{I2C\_DIVER\_H}{I2C\_DIVER\_H}}
+{\footnotesize\ttfamily \#define I2\+C\+\_\+\+DIVER\+\_\+H}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{i2c__driver_8h_a64303230bf4843297e7ac37ac236ca04}\label{i2c__driver_8h_a64303230bf4843297e7ac37ac236ca04} 
+\index{i2c\_driver.h@{i2c\_driver.h}!i2c\_init@{i2c\_init}}
+\index{i2c\_init@{i2c\_init}!i2c\_driver.h@{i2c\_driver.h}}
+\doxysubsubsection{\texorpdfstring{i2c\_init()}{i2c\_init()}}
+{\footnotesize\ttfamily void i2c\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+This method initializes the i2c bus. Not register values are calculated. 
+
+\Hypertarget{i2c__driver_8h_a93a01abc58beaae945d46cee86d9872c}\label{i2c__driver_8h_a93a01abc58beaae945d46cee86d9872c} 
+\index{i2c\_driver.h@{i2c\_driver.h}!i2c\_pfusch@{i2c\_pfusch}}
+\index{i2c\_pfusch@{i2c\_pfusch}!i2c\_driver.h@{i2c\_driver.h}}
+\doxysubsubsection{\texorpdfstring{i2c\_pfusch()}{i2c\_pfusch()}}
+{\footnotesize\ttfamily void i2c\+\_\+pfusch (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{i2c__driver_8h_a456f6c417d5e41e5e9000a734ba2b658}\label{i2c__driver_8h_a456f6c417d5e41e5e9000a734ba2b658} 
+\index{i2c\_driver.h@{i2c\_driver.h}!i2c\_readByte@{i2c\_readByte}}
+\index{i2c\_readByte@{i2c\_readByte}!i2c\_driver.h@{i2c\_driver.h}}
+\doxysubsubsection{\texorpdfstring{i2c\_readByte()}{i2c\_readByte()}}
+{\footnotesize\ttfamily int i2c\+\_\+read\+Byte (\begin{DoxyParamCaption}\item[{bool}]{continue\+Transfer = {\ttfamily false} }\end{DoxyParamCaption})}
+
+\Hypertarget{i2c__driver_8h_ad212363f60b39a41e45c7eb80b1248a2}\label{i2c__driver_8h_ad212363f60b39a41e45c7eb80b1248a2} 
+\index{i2c\_driver.h@{i2c\_driver.h}!i2c\_readDWord@{i2c\_readDWord}}
+\index{i2c\_readDWord@{i2c\_readDWord}!i2c\_driver.h@{i2c\_driver.h}}
+\doxysubsubsection{\texorpdfstring{i2c\_readDWord()}{i2c\_readDWord()}}
+{\footnotesize\ttfamily int i2c\+\_\+read\+DWord (\begin{DoxyParamCaption}\item[{int}]{address,  }\item[{int}]{peripheral\+Register,  }\item[{int \texorpdfstring{$\ast$}{*}}]{data }\end{DoxyParamCaption})}
+
+\Hypertarget{i2c__driver_8h_ad5b3c1d21aabd1a69e8e519fa3f2ca20}\label{i2c__driver_8h_ad5b3c1d21aabd1a69e8e519fa3f2ca20} 
+\index{i2c\_driver.h@{i2c\_driver.h}!i2c\_readNDwords@{i2c\_readNDwords}}
+\index{i2c\_readNDwords@{i2c\_readNDwords}!i2c\_driver.h@{i2c\_driver.h}}
+\doxysubsubsection{\texorpdfstring{i2c\_readNDwords()}{i2c\_readNDwords()}}
+{\footnotesize\ttfamily int i2c\+\_\+read\+NDwords (\begin{DoxyParamCaption}\item[{int}]{address,  }\item[{int}]{start\+Register,  }\item[{int \texorpdfstring{$\ast$}{*}}]{data\+Array,  }\item[{int}]{len }\end{DoxyParamCaption})}
+
+\Hypertarget{i2c__driver_8h_a1a56b07f2b736aadd4e2fdf58b655d3d}\label{i2c__driver_8h_a1a56b07f2b736aadd4e2fdf58b655d3d} 
+\index{i2c\_driver.h@{i2c\_driver.h}!i2c\_readWord@{i2c\_readWord}}
+\index{i2c\_readWord@{i2c\_readWord}!i2c\_driver.h@{i2c\_driver.h}}
+\doxysubsubsection{\texorpdfstring{i2c\_readWord()}{i2c\_readWord()}}
+{\footnotesize\ttfamily int i2c\+\_\+read\+Word (\begin{DoxyParamCaption}\item[{int}]{address,  }\item[{int}]{peripheral\+Register,  }\item[{char \texorpdfstring{$\ast$}{*}}]{data }\end{DoxyParamCaption})}
+
+\Hypertarget{i2c__driver_8h_a07aa2fa7259ffde0a63300f98ccef57d}\label{i2c__driver_8h_a07aa2fa7259ffde0a63300f98ccef57d} 
+\index{i2c\_driver.h@{i2c\_driver.h}!i2c\_repeatedStartCondition@{i2c\_repeatedStartCondition}}
+\index{i2c\_repeatedStartCondition@{i2c\_repeatedStartCondition}!i2c\_driver.h@{i2c\_driver.h}}
+\doxysubsubsection{\texorpdfstring{i2c\_repeatedStartCondition()}{i2c\_repeatedStartCondition()}}
+{\footnotesize\ttfamily void i2c\+\_\+repeated\+Start\+Condition (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The method sends a repeated start condition on the bus. 
+
+\Hypertarget{i2c__driver_8h_aa8f5ce5adb8d76a6418b190c4927121e}\label{i2c__driver_8h_aa8f5ce5adb8d76a6418b190c4927121e} 
+\index{i2c\_driver.h@{i2c\_driver.h}!i2c\_sendAddressRead@{i2c\_sendAddressRead}}
+\index{i2c\_sendAddressRead@{i2c\_sendAddressRead}!i2c\_driver.h@{i2c\_driver.h}}
+\doxysubsubsection{\texorpdfstring{i2c\_sendAddressRead()}{i2c\_sendAddressRead()}}
+{\footnotesize\ttfamily int i2c\+\_\+send\+Address\+Read (\begin{DoxyParamCaption}\item[{const int}]{address }\end{DoxyParamCaption})}
+
+\Hypertarget{i2c__driver_8h_abbe833f44925938a54baf2d22bba0a52}\label{i2c__driver_8h_abbe833f44925938a54baf2d22bba0a52} 
+\index{i2c\_driver.h@{i2c\_driver.h}!i2c\_sendAddressWrite@{i2c\_sendAddressWrite}}
+\index{i2c\_sendAddressWrite@{i2c\_sendAddressWrite}!i2c\_driver.h@{i2c\_driver.h}}
+\doxysubsubsection{\texorpdfstring{i2c\_sendAddressWrite()}{i2c\_sendAddressWrite()}}
+{\footnotesize\ttfamily int i2c\+\_\+send\+Address\+Write (\begin{DoxyParamCaption}\item[{const int}]{address }\end{DoxyParamCaption})}
+
+\Hypertarget{i2c__driver_8h_a2edb5565d5a8a3d8c2c2477cb79eb58f}\label{i2c__driver_8h_a2edb5565d5a8a3d8c2c2477cb79eb58f} 
+\index{i2c\_driver.h@{i2c\_driver.h}!i2c\_sendData@{i2c\_sendData}}
+\index{i2c\_sendData@{i2c\_sendData}!i2c\_driver.h@{i2c\_driver.h}}
+\doxysubsubsection{\texorpdfstring{i2c\_sendData()}{i2c\_sendData()}}
+{\footnotesize\ttfamily int i2c\+\_\+send\+Data (\begin{DoxyParamCaption}\item[{int}]{data }\end{DoxyParamCaption})}
+
+\Hypertarget{i2c__driver_8h_a85f8848a73f92f0448091bcf274e134a}\label{i2c__driver_8h_a85f8848a73f92f0448091bcf274e134a} 
+\index{i2c\_driver.h@{i2c\_driver.h}!i2c\_startCondition@{i2c\_startCondition}}
+\index{i2c\_startCondition@{i2c\_startCondition}!i2c\_driver.h@{i2c\_driver.h}}
+\doxysubsubsection{\texorpdfstring{i2c\_startCondition()}{i2c\_startCondition()}}
+{\footnotesize\ttfamily void i2c\+\_\+start\+Condition (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The method sends a start condition on the bus. 
+
+\Hypertarget{i2c__driver_8h_a37ecdaee01f7c6d4e08f37b262c8ec9f}\label{i2c__driver_8h_a37ecdaee01f7c6d4e08f37b262c8ec9f} 
+\index{i2c\_driver.h@{i2c\_driver.h}!i2c\_stopCondition@{i2c\_stopCondition}}
+\index{i2c\_stopCondition@{i2c\_stopCondition}!i2c\_driver.h@{i2c\_driver.h}}
+\doxysubsubsection{\texorpdfstring{i2c\_stopCondition()}{i2c\_stopCondition()}}
+{\footnotesize\ttfamily void i2c\+\_\+stop\+Condition (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The method sends a stop condition on the bus. 
+
+\Hypertarget{i2c__driver_8h_aa30b7a559b0a1b04e2939ac6a3daf1d5}\label{i2c__driver_8h_aa30b7a559b0a1b04e2939ac6a3daf1d5} 
+\index{i2c\_driver.h@{i2c\_driver.h}!i2c\_writeByte@{i2c\_writeByte}}
+\index{i2c\_writeByte@{i2c\_writeByte}!i2c\_driver.h@{i2c\_driver.h}}
+\doxysubsubsection{\texorpdfstring{i2c\_writeByte()}{i2c\_writeByte()}}
+{\footnotesize\ttfamily void i2c\+\_\+write\+Byte (\begin{DoxyParamCaption}\item[{int}]{\+\_\+byte }\end{DoxyParamCaption})}
+
+\Hypertarget{i2c__driver_8h_a3e0ff844beb34ef39d972333170e76d9}\label{i2c__driver_8h_a3e0ff844beb34ef39d972333170e76d9} 
+\index{i2c\_driver.h@{i2c\_driver.h}!i2c\_writeWord@{i2c\_writeWord}}
+\index{i2c\_writeWord@{i2c\_writeWord}!i2c\_driver.h@{i2c\_driver.h}}
+\doxysubsubsection{\texorpdfstring{i2c\_writeWord()}{i2c\_writeWord()}}
+{\footnotesize\ttfamily int i2c\+\_\+write\+Word (\begin{DoxyParamCaption}\item[{int}]{address,  }\item[{int}]{peripheral\+Register,  }\item[{int}]{data }\end{DoxyParamCaption})}
+

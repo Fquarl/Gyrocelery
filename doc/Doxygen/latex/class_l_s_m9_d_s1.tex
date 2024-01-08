@@ -1,0 +1,190 @@
+\doxysection{LSM9\+DS1 Class Reference}
+\hypertarget{class_l_s_m9_d_s1}{}\label{class_l_s_m9_d_s1}\index{LSM9DS1@{LSM9DS1}}
+
+
+The class represents the \doxylink{class_l_s_m9_d_s1}{LSM9\+DS1}.  
+
+
+
+
+{\ttfamily \#include $<$LSM9\+DS1.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_l_s_m9_d_s1_aa273f2a7c05a08f2c6e29d173414c543}\label{class_l_s_m9_d_s1_aa273f2a7c05a08f2c6e29d173414c543} 
+{\bfseries LSM9\+DS1} (int accel\+Gyro=ACELGYRO\+\_\+\+ADR, int magneto=MAGNETO\+\_\+\+ADR)
+\item 
+\Hypertarget{class_l_s_m9_d_s1_a925871226ad548ccdb44ba0bf566baab}\label{class_l_s_m9_d_s1_a925871226ad548ccdb44ba0bf566baab} 
+void {\bfseries softreset} ()
+\begin{DoxyCompactList}\small\item\em The method shows performs a softreset of the device. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_l_s_m9_d_s1_af3c12c72a2cf2f28a6c0798b3671c708}{set\+ODR}} (const int ODR)
+\begin{DoxyCompactList}\small\item\em The method sets the output data rate of both the accelerometer and gyroscope. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_l_s_m9_d_s1_a3f4c1b680824e0c96545aeb206bc4cc4}{set\+Accel\+Prescale}} (const int scaler)
+\begin{DoxyCompactList}\small\item\em The method sets the prescaler/fullscale range of the accelerometer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_l_s_m9_d_s1_a5d0f73329efa25f2bc1903f31c9ce64e}{set\+Gyro\+Prescale}} (const int scaler)
+\begin{DoxyCompactList}\small\item\em The method sets the prescaler/fullscale range of the gyroscope. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_l_s_m9_d_s1_a320cf666b7f2965dab63ca7e2f8c0f40}{get\+Gyro\+Data\+Raw}} (int \texorpdfstring{$\ast$}{*}data\+Array)
+\begin{DoxyCompactList}\small\item\em The method reads all gyro axis as raw values. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_l_s_m9_d_s1_aa5fde907c7c7c97dd9e2042870d09546}{get\+Gyro\+Data}} (double \texorpdfstring{$\ast$}{*}data\+Array)
+\begin{DoxyCompactList}\small\item\em The method reads all gyro axis as dps-\/value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_l_s_m9_d_s1_a3d8a38b0444e4be94d359788da03610d}{get\+Accel\+Data\+Raw}} (int \texorpdfstring{$\ast$}{*}data\+Array)
+\begin{DoxyCompactList}\small\item\em The method reads all accelerometer axis as raw values. \end{DoxyCompactList}\item 
+\Hypertarget{class_l_s_m9_d_s1_a89a58977244c6ba4c69c0ca0d0fbba90}\label{class_l_s_m9_d_s1_a89a58977244c6ba4c69c0ca0d0fbba90} 
+void {\bfseries get\+Accel\+Data} (double \texorpdfstring{$\ast$}{*}data\+Array)
+\item 
+double \mbox{\hyperlink{class_l_s_m9_d_s1_afa5eea85342ca051f136c158fc024ade}{get\+Total\+Accel}} (double \texorpdfstring{$\ast$}{*}existing\+Data=0)
+\begin{DoxyCompactList}\small\item\em Broken! The method calculates the total acceleration meassured as g-\/value. \end{DoxyCompactList}\item 
+\Hypertarget{class_l_s_m9_d_s1_a1f336ea8cf16353611bd07adbcf01d11}\label{class_l_s_m9_d_s1_a1f336ea8cf16353611bd07adbcf01d11} 
+void {\bfseries set\+Fifo\+Interrupt} (void)
+\begin{DoxyCompactList}\small\item\em This method enables the \"{}\+FIFO threshhold reached\"{} interrupt. \end{DoxyCompactList}\item 
+\Hypertarget{class_l_s_m9_d_s1_aa6d7d1e4df684a03db8af73264ff01ca}\label{class_l_s_m9_d_s1_aa6d7d1e4df684a03db8af73264ff01ca} 
+void {\bfseries enable\+Fifo} (void)
+\item 
+\Hypertarget{class_l_s_m9_d_s1_aa62914f07f404a67bc3154787dc85d9c}\label{class_l_s_m9_d_s1_aa62914f07f404a67bc3154787dc85d9c} 
+void {\bfseries read\+Fifo} (void)
+\begin{DoxyCompactList}\small\item\em Saves all the data stored in the FIFO of the \doxylink{class_l_s_m9_d_s1}{LSM9\+DS1} to the internal stored\+Fifo\+Data Object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structinertial_module_data}{inertial\+Module\+Data}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_l_s_m9_d_s1_a252e1501d5fdc0aeeb894e20e07d7d91}{get\+Stored\+Data}} (void)
+\begin{DoxyCompactList}\small\item\em Reads all the data stored in the internal stored\+Fifo\+Data Object to the provided \doxylink{structstored_gyro_data}{stored\+Gyro\+Data} struct. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The class represents the \doxylink{class_l_s_m9_d_s1}{LSM9\+DS1}. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_l_s_m9_d_s1_a3d8a38b0444e4be94d359788da03610d}\label{class_l_s_m9_d_s1_a3d8a38b0444e4be94d359788da03610d} 
+\index{LSM9DS1@{LSM9DS1}!getAccelDataRaw@{getAccelDataRaw}}
+\index{getAccelDataRaw@{getAccelDataRaw}!LSM9DS1@{LSM9DS1}}
+\doxysubsubsection{\texorpdfstring{getAccelDataRaw()}{getAccelDataRaw()}}
+{\footnotesize\ttfamily LSM9\+DS1\+::get\+Accel\+Data\+Raw (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{data\+Array }\end{DoxyParamCaption})}
+
+
+
+The method reads all accelerometer axis as raw values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{[}in\+Out\mbox{]}} & An pointer to an integer array of size 3 containing the data. X-\/axis, Y-\/axis and Z-\/axis. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_l_s_m9_d_s1_aa5fde907c7c7c97dd9e2042870d09546}\label{class_l_s_m9_d_s1_aa5fde907c7c7c97dd9e2042870d09546} 
+\index{LSM9DS1@{LSM9DS1}!getGyroData@{getGyroData}}
+\index{getGyroData@{getGyroData}!LSM9DS1@{LSM9DS1}}
+\doxysubsubsection{\texorpdfstring{getGyroData()}{getGyroData()}}
+{\footnotesize\ttfamily LSM9\+DS1\+::get\+Gyro\+Data (\begin{DoxyParamCaption}\item[{double \texorpdfstring{$\ast$}{*}}]{data\+Array }\end{DoxyParamCaption})}
+
+
+
+The method reads all gyro axis as dps-\/value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{[}in\+Out\mbox{]}} & An pointer to an double array of size 3 containing the data. X-\/axis, Y-\/axis and Z-\/axis. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_l_s_m9_d_s1_a320cf666b7f2965dab63ca7e2f8c0f40}\label{class_l_s_m9_d_s1_a320cf666b7f2965dab63ca7e2f8c0f40} 
+\index{LSM9DS1@{LSM9DS1}!getGyroDataRaw@{getGyroDataRaw}}
+\index{getGyroDataRaw@{getGyroDataRaw}!LSM9DS1@{LSM9DS1}}
+\doxysubsubsection{\texorpdfstring{getGyroDataRaw()}{getGyroDataRaw()}}
+{\footnotesize\ttfamily LSM9\+DS1\+::get\+Gyro\+Data\+Raw (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{data\+Array }\end{DoxyParamCaption})}
+
+
+
+The method reads all gyro axis as raw values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{[}in\+Out\mbox{]}} & An pointer to an integer array of size 3 containing the data. X-\/axis, Y-\/axis and Z-\/axis. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_l_s_m9_d_s1_a252e1501d5fdc0aeeb894e20e07d7d91}\label{class_l_s_m9_d_s1_a252e1501d5fdc0aeeb894e20e07d7d91} 
+\index{LSM9DS1@{LSM9DS1}!getStoredData@{getStoredData}}
+\index{getStoredData@{getStoredData}!LSM9DS1@{LSM9DS1}}
+\doxysubsubsection{\texorpdfstring{getStoredData()}{getStoredData()}}
+{\footnotesize\ttfamily LSM9\+DS1\+::get\+Stored\+Data (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Reads all the data stored in the internal stored\+Fifo\+Data Object to the provided \doxylink{structstored_gyro_data}{stored\+Gyro\+Data} struct. 
+
+\begin{DoxyReturn}{Returns}
+The stored\+Fifo\+Data of the \doxylink{class_l_s_m9_d_s1}{LSM9\+DS1} 
+\end{DoxyReturn}
+\Hypertarget{class_l_s_m9_d_s1_afa5eea85342ca051f136c158fc024ade}\label{class_l_s_m9_d_s1_afa5eea85342ca051f136c158fc024ade} 
+\index{LSM9DS1@{LSM9DS1}!getTotalAccel@{getTotalAccel}}
+\index{getTotalAccel@{getTotalAccel}!LSM9DS1@{LSM9DS1}}
+\doxysubsubsection{\texorpdfstring{getTotalAccel()}{getTotalAccel()}}
+{\footnotesize\ttfamily LSM9\+DS1\+::get\+Total\+Accel (\begin{DoxyParamCaption}\item[{double \texorpdfstring{$\ast$}{*}}]{existing\+Data = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Broken! The method calculates the total acceleration meassured as g-\/value. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em An} & optional double-\/\+Array containing the acceleration data. If no data is provided, current data will be read from the device. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The total acceleration as g-\/value. 
+\end{DoxyReturn}
+\Hypertarget{class_l_s_m9_d_s1_a3f4c1b680824e0c96545aeb206bc4cc4}\label{class_l_s_m9_d_s1_a3f4c1b680824e0c96545aeb206bc4cc4} 
+\index{LSM9DS1@{LSM9DS1}!setAccelPrescale@{setAccelPrescale}}
+\index{setAccelPrescale@{setAccelPrescale}!LSM9DS1@{LSM9DS1}}
+\doxysubsubsection{\texorpdfstring{setAccelPrescale()}{setAccelPrescale()}}
+{\footnotesize\ttfamily LSM9\+DS1\+::set\+Accel\+Prescale (\begin{DoxyParamCaption}\item[{const int}]{scaler }\end{DoxyParamCaption})}
+
+
+
+The method sets the prescaler/fullscale range of the accelerometer. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em The} & desired prescaler/fullscale range \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{class_accel_prescale}{Accel\+Prescale} 
+\end{DoxySeeAlso}
+\Hypertarget{class_l_s_m9_d_s1_a5d0f73329efa25f2bc1903f31c9ce64e}\label{class_l_s_m9_d_s1_a5d0f73329efa25f2bc1903f31c9ce64e} 
+\index{LSM9DS1@{LSM9DS1}!setGyroPrescale@{setGyroPrescale}}
+\index{setGyroPrescale@{setGyroPrescale}!LSM9DS1@{LSM9DS1}}
+\doxysubsubsection{\texorpdfstring{setGyroPrescale()}{setGyroPrescale()}}
+{\footnotesize\ttfamily LSM9\+DS1\+::set\+Gyro\+Prescale (\begin{DoxyParamCaption}\item[{const int}]{scaler }\end{DoxyParamCaption})}
+
+
+
+The method sets the prescaler/fullscale range of the gyroscope. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em The} & desired prescaler/fullscale range \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{class_gyro_prescale}{Gyro\+Prescale} 
+\end{DoxySeeAlso}
+\Hypertarget{class_l_s_m9_d_s1_af3c12c72a2cf2f28a6c0798b3671c708}\label{class_l_s_m9_d_s1_af3c12c72a2cf2f28a6c0798b3671c708} 
+\index{LSM9DS1@{LSM9DS1}!setODR@{setODR}}
+\index{setODR@{setODR}!LSM9DS1@{LSM9DS1}}
+\doxysubsubsection{\texorpdfstring{setODR()}{setODR()}}
+{\footnotesize\ttfamily LSM9\+DS1\+::set\+ODR (\begin{DoxyParamCaption}\item[{const int}]{ODR }\end{DoxyParamCaption})}
+
+
+
+The method sets the output data rate of both the accelerometer and gyroscope. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em The} & desired ODR \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classaccel_gyro_odr}{accel\+Gyro\+Odr} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+LSM9\+DS1/LSM9\+DS1.\+h\item 
+lib/\+LSM9\+DS1/LSM9\+DS1.\+cpp\end{DoxyCompactItemize}

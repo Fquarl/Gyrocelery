@@ -1,0 +1,67 @@
+\doxysection{HEAP\+\_\+\+SETTINGS Namespace Reference}
+\hypertarget{namespace_h_e_a_p___s_e_t_t_i_n_g_s}{}\label{namespace_h_e_a_p___s_e_t_t_i_n_g_s}\index{HEAP\_SETTINGS@{HEAP\_SETTINGS}}
+
+
+The namespace contains constants for use of the AVR\textquotesingle{}s heap.  
+
+
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a08514c576bac925716a48d8f768bf672}\label{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a08514c576bac925716a48d8f768bf672} 
+constexpr uint16\+\_\+t {\bfseries total\+Lenght\+Of\+SRAM} = 0x800
+\begin{DoxyCompactList}\small\item\em The constant specifies the total count of bytes on the SRAM \textbackslash{}value 0x800. \end{DoxyCompactList}\item 
+\Hypertarget{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a308bb337316a699b5cbb8c9a04e15bf4}\label{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a308bb337316a699b5cbb8c9a04e15bf4} 
+constexpr uint16\+\_\+t {\bfseries max\+Heap\+Size} = 0x100
+\begin{DoxyCompactList}\small\item\em The constant specifies the maximum size of the heap on the SRAM \textbackslash{}value 0x100. \end{DoxyCompactList}\item 
+constexpr size\+\_\+t \& \mbox{\hyperlink{namespace_h_e_a_p___s_e_t_t_i_n_g_s_aee30de69c5a892f4b3eab3933b3b5117}{malloc\+Margin}} = \+\_\+\+\_\+malloc\+\_\+margin
+\begin{DoxyCompactList}\small\item\em The constant references \+\_\+\+\_\+malloc\+\_\+margin to define the minimum margin to the stack \textbackslash{}value Default value is 0x20. \end{DoxyCompactList}\item 
+constexpr char \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a8ee05b1c8b1fa21858599cc188d4ed39}{malloc\+Heap\+Start}} = \+\_\+\+\_\+malloc\+\_\+heap\+\_\+start
+\begin{DoxyCompactList}\small\item\em The constant references \+\_\+\+\_\+malloc\+\_\+heap\+\_\+start to point to the heap\textquotesingle{}s start byte. \end{DoxyCompactList}\item 
+constexpr char \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a4999f5984e0e27be4ecdd4a3ecf6fa5c}{malloc\+Heap\+End}} = \+\_\+\+\_\+malloc\+\_\+heap\+\_\+end
+\begin{DoxyCompactList}\small\item\em The constant references \+\_\+\+\_\+malloc\+\_\+heap\+\_\+end to point to the heap\textquotesingle{}s maximum byte position. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The namespace contains constants for use of the AVR\textquotesingle{}s heap. 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a4999f5984e0e27be4ecdd4a3ecf6fa5c}\label{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a4999f5984e0e27be4ecdd4a3ecf6fa5c} 
+\index{HEAP\_SETTINGS@{HEAP\_SETTINGS}!mallocHeapEnd@{mallocHeapEnd}}
+\index{mallocHeapEnd@{mallocHeapEnd}!HEAP\_SETTINGS@{HEAP\_SETTINGS}}
+\doxysubsubsection{\texorpdfstring{mallocHeapEnd}{mallocHeapEnd}}
+{\footnotesize\ttfamily HEAP\+\_\+\+SETTINGS\+::malloc\+Heap\+End = \+\_\+\+\_\+malloc\+\_\+heap\+\_\+end\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+The constant references \+\_\+\+\_\+malloc\+\_\+heap\+\_\+end to point to the heap\textquotesingle{}s maximum byte position. 
+
+\begin{DoxyNote}{Note}
+The value is set in the linking process. 
+\end{DoxyNote}
+\Hypertarget{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a8ee05b1c8b1fa21858599cc188d4ed39}\label{namespace_h_e_a_p___s_e_t_t_i_n_g_s_a8ee05b1c8b1fa21858599cc188d4ed39} 
+\index{HEAP\_SETTINGS@{HEAP\_SETTINGS}!mallocHeapStart@{mallocHeapStart}}
+\index{mallocHeapStart@{mallocHeapStart}!HEAP\_SETTINGS@{HEAP\_SETTINGS}}
+\doxysubsubsection{\texorpdfstring{mallocHeapStart}{mallocHeapStart}}
+{\footnotesize\ttfamily HEAP\+\_\+\+SETTINGS\+::malloc\+Heap\+Start = \+\_\+\+\_\+malloc\+\_\+heap\+\_\+start\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+The constant references \+\_\+\+\_\+malloc\+\_\+heap\+\_\+start to point to the heap\textquotesingle{}s start byte. 
+
+\begin{DoxyNote}{Note}
+The value is set in the linking process. 
+\end{DoxyNote}
+\Hypertarget{namespace_h_e_a_p___s_e_t_t_i_n_g_s_aee30de69c5a892f4b3eab3933b3b5117}\label{namespace_h_e_a_p___s_e_t_t_i_n_g_s_aee30de69c5a892f4b3eab3933b3b5117} 
+\index{HEAP\_SETTINGS@{HEAP\_SETTINGS}!mallocMargin@{mallocMargin}}
+\index{mallocMargin@{mallocMargin}!HEAP\_SETTINGS@{HEAP\_SETTINGS}}
+\doxysubsubsection{\texorpdfstring{mallocMargin}{mallocMargin}}
+{\footnotesize\ttfamily HEAP\+\_\+\+SETTINGS\+::malloc\+Margin = \+\_\+\+\_\+malloc\+\_\+margin\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+The constant references \+\_\+\+\_\+malloc\+\_\+margin to define the minimum margin to the stack \textbackslash{}value Default value is 0x20. 
+
+\begin{DoxyNote}{Note}
+The value is set in the linking process. 
+\end{DoxyNote}

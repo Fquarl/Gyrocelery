@@ -1,0 +1,78 @@
+\doxysection{Vector\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{class_vector}{}\label{class_vector}\index{Vector$<$ T $>$@{Vector$<$ T $>$}}
+
+
+Container for various elements of same type.  
+
+
+
+
+{\ttfamily \#include $<$vector.\+hpp$>$}
+
+Inheritance diagram for Vector\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_vector}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_vector_abd883e8ec6e3452f1e36484c9844048d}{Vector}} (void)
+\begin{DoxyCompactList}\small\item\em The constructor initializes an empty list. \end{DoxyCompactList}\item 
+\Hypertarget{class_vector_a09e97fb8e2f3e42f89726435af571202}\label{class_vector_a09e97fb8e2f3e42f89726435af571202} 
+{\bfseries Vector} (T initialization\+Parameter)
+\item 
+\Hypertarget{class_vector_a91b8d959f2fd66e95fe5dd1772acd56e}\label{class_vector_a91b8d959f2fd66e95fe5dd1772acd56e} 
+T \& {\bfseries operator\mbox{[}$\,$\mbox{]}} (const uint8\+\_\+t \&index)
+\item 
+\Hypertarget{class_vector_a6732dca2232d886c69255953d313bb1b}\label{class_vector_a6732dca2232d886c69255953d313bb1b} 
+void {\bfseries operator$<$$<$} (const T value)
+\item 
+\Hypertarget{class_vector_a45dd0532d6438c4322f8dd7fc1fae010}\label{class_vector_a45dd0532d6438c4322f8dd7fc1fae010} 
+void {\bfseries operator$<$$<$} (const char \texorpdfstring{$\ast$}{*}string)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_vector_container}{Vector\+Container$<$ T $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Vector\+Container} (void)
+\begin{DoxyCompactList}\small\item\em Intializes the instance of type \doxylink{class_vector_container}{Vector\+Container}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_vector_container_ac8f5e1a7227b343f808c9b343eaafb66}{append}} (const T value)
+\begin{DoxyCompactList}\small\item\em The method adds a new element to the top of the linked list. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_vector_container_a0acc5d5baa18968f9a3fdaff91ec578f}{length}} (void) const
+\begin{DoxyCompactList}\small\item\em The method calcualtes the length of the linked list. \end{DoxyCompactList}\item 
+T \& \mbox{\hyperlink{class_vector_container_a65ab6016104c42bb220b1401731fa947}{at}} (const uint8\+\_\+t \&index) const
+\begin{DoxyCompactList}\small\item\em The method returns the value at the passed index. \end{DoxyCompactList}\item 
+void {\bfseries delete\+All} (void) const
+\begin{DoxyCompactList}\small\item\em The method deletes all elements in the linked list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class Vector$<$ T $>$}
+Container for various elements of same type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em The} & typename of the instance to store \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_vector_abd883e8ec6e3452f1e36484c9844048d}\label{class_vector_abd883e8ec6e3452f1e36484c9844048d} 
+\index{Vector$<$ T $>$@{Vector$<$ T $>$}!Vector@{Vector}}
+\index{Vector@{Vector}!Vector$<$ T $>$@{Vector$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Vector()}{Vector()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{class_vector}{Vector}}$<$ T $>$\mbox{\hyperlink{class_vector}{\+::\+Vector}} (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The constructor initializes an empty list. 
+
+The constructor initializes an list with the passed parameter. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Vector\+\_\+header\+\_\+only/\mbox{\hyperlink{vector_8hpp}{vector.\+hpp}}\end{DoxyCompactItemize}

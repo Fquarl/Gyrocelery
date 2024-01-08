@@ -1,0 +1,95 @@
+\doxysection{LSM9\+DS1\+\_\+\+Registers.\+h}
+\hypertarget{_l_s_m9_d_s1___registers_8h_source}{}\label{_l_s_m9_d_s1___registers_8h_source}\index{lib/LSM9DS1/LSM9DS1\_Registers.h@{lib/LSM9DS1/LSM9DS1\_Registers.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_LSM9DS1\_Registers\_H\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_LSM9DS1\_Registers\_H\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Default\ addresses}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ ACELGYRO\_ADR\ \ \ \ 0x6B}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ MAGNETO\_ADR\ \ \ \ \ 0b0011100}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Gyro,\ Acc\ Registers}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ ACT\_THS\ \ \ \ \ \ \ \ \ \ \ \ \ 0x04}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ ACT\_DUR\ \ \ \ \ \ \ \ \ \ \ \ \ 0x05}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ INT\_GEN\_CFG\_XL\ \ \ \ \ \ 0x06}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ INT\_GEN\_THS\_X\_XL\ \ \ \ 0x07}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ INT\_GEN\_THS\_Y\_XL\ \ \ \ 0x08}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ INT\_GEN\_THS\_Z\_XL\ \ \ \ 0x09}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ INT\_GEN\_DUR\_XL\ \ \ \ \ \ 0x0A}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ REFERENCE\_G\ \ \ \ \ \ \ \ \ 0x0B}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ INT1\_CTRL\ \ \ \ \ \ \ \ \ \ \ 0x0C}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ INT2\_CTRL\ \ \ \ \ \ \ \ \ \ \ 0x0D}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ WHO\_AM\_I\_XG\ \ \ \ \ \ \ \ \ 0x0F}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ CTRL\_REG1\_G\ \ \ \ \ \ \ \ \ 0x10}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ CTRL\_REG2\_G\ \ \ \ \ \ \ \ \ 0x11}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ CTRL\_REG3\_G\ \ \ \ \ \ \ \ \ 0x12}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ ORIENT\_CFG\_G\ \ \ \ \ \ \ \ 0x13}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ INT\_GEN\_SRC\_G\ \ \ \ \ \ \ 0x14}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ OUT\_TEMP\_L\ \ \ \ \ \ \ \ \ \ 0x15}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ OUT\_TEMP\_H\ \ \ \ \ \ \ \ \ \ 0x16}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ STATUS\_REG\_0\ \ \ \ \ \ \ \ 0x17}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ OUT\_X\_L\_G\ \ \ \ \ \ \ \ \ \ \ 0x18}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ OUT\_X\_H\_G\ \ \ \ \ \ \ \ \ \ \ 0x19}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ OUT\_Y\_L\_G\ \ \ \ \ \ \ \ \ \ \ 0x1A}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ OUT\_Y\_H\_G\ \ \ \ \ \ \ \ \ \ \ 0x1B}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ OUT\_Z\_L\_G\ \ \ \ \ \ \ \ \ \ \ 0x1C}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ OUT\_Z\_H\_G\ \ \ \ \ \ \ \ \ \ \ 0x1D}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ CTRL\_REG4\ \ \ \ \ \ \ \ \ \ \ 0x1E}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ CTRL\_REG5\_XL\ \ \ \ \ \ \ \ 0x1F}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ CTRL\_REG6\_XL\ \ \ \ \ \ \ \ 0x20}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ CTRL\_REG7\_XL\ \ \ \ \ \ \ \ 0x21}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ CTRL\_REG8\ \ \ \ \ \ \ \ \ \ \ 0x22}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ CTRL\_REG9\ \ \ \ \ \ \ \ \ \ \ 0x23}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ CTRL\_REG10\ \ \ \ \ \ \ \ \ \ 0x24}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ INT\_GEN\_SRC\_XL\ \ \ \ \ \ 0x26}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ STATUS\_REG\_1\ \ \ \ \ \ \ \ 0x27}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ OUT\_X\_L\_XL\ \ \ \ \ \ \ \ \ \ 0x28}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ OUT\_X\_H\_XL\ \ \ \ \ \ \ \ \ \ 0x29}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ OUT\_Y\_L\_XL\ \ \ \ \ \ \ \ \ \ 0x2A}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ OUT\_Y\_H\_XL\ \ \ \ \ \ \ \ \ \ 0x2B}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ OUT\_Z\_L\_XL\ \ \ \ \ \ \ \ \ \ 0x2C}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ OUT\_Z\_H\_XL\ \ \ \ \ \ \ \ \ \ 0x2D}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ FIFO\_CTRL\ \ \ \ \ \ \ \ \ \ \ 0x2E}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ FIFO\_SRC\ \ \ \ \ \ \ \ \ \ \ \ 0x2F}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ INT\_GEN\_CFG\_G\ \ \ \ \ \ \ 0x30}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ INT\_GEN\_THS\_XH\_G\ \ \ \ 0x31}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ INT\_GEN\_THS\_XL\_G\ \ \ \ 0x32}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ INT\_GEN\_THS\_YH\_G\ \ \ \ 0x33}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ INT\_GEN\_THS\_YL\_G\ \ \ \ 0x34}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ INT\_GEN\_THS\_ZH\_G\ \ \ \ 0x35}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ INT\_GEN\_THS\_ZL\_G\ \ \ \ 0x36}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ INT\_GEN\_DUR\_G\ \ \ \ \ \ \ 0x37}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ Magnet\ Registers}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ OFFSET\_X\_REG\_L\_M\ \ \ \ \ \ 0x05}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ OFFSET\_X\_REG\_H\_M\ \ \ \ \ \ 0x06}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ OFFSET\_Y\_REG\_L\_M\ \ \ \ \ \ 0x07}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ OFFSET\_Y\_REG\_H\_M\ \ \ \ \ \ 0x08}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ OFFSET\_Z\_REG\_L\_M\ \ \ \ \ \ 0x09}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ OFFSET\_Z\_REG\_H\_M\ \ \ \ \ \ 0x0A}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ WHO\_AM\_I\_M\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0F}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ CTRL\_REG1\_M\ \ \ \ \ \ \ \ \ \ \ \ \ 0x20}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ CTRL\_REG2\_M\ \ \ \ \ \ \ \ \ \ \ \ \ 0x21}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ CTRL\_REG3\_M\ \ \ \ \ \ \ \ \ \ \ \ \ 0x22}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ CTRL\_REG4\_M\ \ \ \ \ \ \ \ \ \ \ \ \ 0x23}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ CTRL\_REG5\_M\ \ \ \ \ \ \ \ \ \ \ \ \ 0x24}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ STATUS\_REG\_M\ \ \ \ \ \ \ \ \ \ \ \ 0x27}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ OUT\_X\_L\_M\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x28}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ OUT\_X\_H\_M\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x29}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ OUT\_Y\_L\_M\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x2A}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ OUT\_Y\_H\_M\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x2B}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ OUT\_Z\_L\_M\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x2C}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ OUT\_Z\_H\_M\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x2D}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ INT\_CFG\_M\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x30}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ INT\_SRC\_M\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x31}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ INT\_THS\_L\_M\ \ \ \ \ \ \ \ \ \ \ \ \ 0x32}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ INT\_THS\_H\_M\ \ \ \ \ \ \ \ \ \ \ \ \ 0x33}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{comment}{//\ Responses}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ WHO\_AM\_I\_AG\_RSP\ \ \ \ \ \ \ 0x68}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ WHO\_AM\_I\_M\_RSP\ \ \ \ \ \ \ \ 0x3D}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,159 @@
+\doxysection{lcd.\+hpp}
+\hypertarget{lcd_8hpp_source}{}\label{lcd_8hpp_source}\index{lib/Display/lcd.hpp@{lib/Display/lcd.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ \_\_LCD\_HPP\_\_}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ \_\_LCD\_HPP\_\_}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ F\_CPU\ 1000000UL}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <avr/io.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <util/delay.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}../i2c\_driver/i2c\_driver.h"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}../Vector\_header\_only/vector.hpp"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_l_c_d}{LCD}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_l_c_d_a3d7904f98c26c3e2b296e2ddadff004e}{LCD}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_l_c_d_aa8c99e765b9b7dd88e3295d47c172889}{printFormatted}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vector}{Vector<char>}}\&\ text);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_l_c_d_a0f41848472078d3083ec52751ea862c2}{print}}(\textcolor{keywordtype}{char}\ text[32]);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_l_c_d_a929490f2df1f6b82a6f0613d0ff6a02b}{home}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_l_c_d_a22be760ad38c53befd292409b54424bf}{clear}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_l_c_d_a094b2a707f2e49f46b6cac992f4b7d0b}{setCursor}}(\textcolor{keyword}{const}\ uint8\_t\&\ columnIndex,\ \textcolor{keyword}{const}\ uint8\_t\&\ rowIndex);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_l_c_d_ad9e203a40e420f56d15c2bf833d17671}{backlightOnOff}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\&\ state);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_l_c_d_a723ed8290935bfeb24d7d175371e9244}{blinkOnOff}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\&\ state);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_l_c_d_a5dd0f59d86695468934e72afe5efca82}{cursorOnOff}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\&\ state);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_l_c_d_ad7a143d72af7a2ffdd98ec07a763bb02}{displayOnOff}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\&\ state);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ init(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ sendAddress(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ expanderWrite(\textcolor{keyword}{const}\ uint8\_t\&\ value);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{void}\ pulseEnable(\textcolor{keyword}{const}\ uint8\_t\&\ value);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{void}\ write4bits(\textcolor{keyword}{const}\ uint8\_t\&\ value);}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{void}\ send(\textcolor{keyword}{const}\ uint8\_t\&\ value,\ \textcolor{keyword}{const}\ uint8\_t\&\ mode);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{void}\ command(\textcolor{keyword}{const}\ uint8\_t\&\ value);}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{void}\ leftToRight(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordtype}{void}\ rightToLeft(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{void}\ scrollDisplayLeft(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{void}\ scrollDisplayRight(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{void}\ leftJustify(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordtype}{void}\ rightJustify(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{void}\ enter4bitMode(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ \_lcdAddress\ =\ (0x27\ <<\ 1)\ \&\ 0xfe;}
+\DoxyCodeLine{00193\ \ \ \ \ }
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ \_rowCount\ =\ 2;}
+\DoxyCodeLine{00200\ \ \ \ \ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ \_columnCount\ =\ 16;}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00213\ \ \ \ \ uint8\_t\ \_backlightValue\ =\ BACKLIGHT;}
+\DoxyCodeLine{00214\ \ \ \ \ }
+\DoxyCodeLine{00220\ \ \ \ \ uint8\_t\ \_displayControl\ =\ DISPLAYON\ |\ CURSOROFF\ |\ BLINKOFF;\ }
+\DoxyCodeLine{00221\ \ \ \ \ }
+\DoxyCodeLine{00227\ \ \ \ \ uint8\_t\ \_displayMode\ =\ ENTRYLEFT\ |\ ENTRYSHIFTDECREMENT;\ \ \ \ \ }
+\DoxyCodeLine{00228\ \ \ \ \ }
+\DoxyCodeLine{00234\ \ \ \ \ uint8\_t\ \_displayFunction\ =\ 0x00;}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ CLEARDISPLAY\ =\ 0x01;}
+\DoxyCodeLine{00242\ \ \ \ \ }
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ RETURNHOME\ =\ 0x02;}
+\DoxyCodeLine{00249\ \ \ \ \ }
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ ENTRYMODESET\ =\ 0x04;}
+\DoxyCodeLine{00256\ \ \ \ \ }
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ DISPLAYCONTROL\ =\ 0x08;}
+\DoxyCodeLine{00263\ \ \ \ \ }
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ CURSORSHIFT\ =\ 0x10;}
+\DoxyCodeLine{00270\ \ \ \ \ }
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ FUNCTIONSET\ =\ 0x20;}
+\DoxyCodeLine{00277\ \ \ \ \ }
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ SETCGRAMADDR\ =\ 0x40;}
+\DoxyCodeLine{00284\ \ \ \ \ }
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ SETDDRAMADDR\ =\ 0x80;}
+\DoxyCodeLine{00291\ \ \ \ \ }
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ ENTRYRIGHT\ =\ 0x00;}
+\DoxyCodeLine{00298\ \ \ \ \ }
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ ENTRYLEFT\ =\ 0x02;}
+\DoxyCodeLine{00305\ \ \ \ \ }
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ ENTRYSHIFTINCREMENT\ =\ 0x01;}
+\DoxyCodeLine{00312\ \ \ \ \ }
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ ENTRYSHIFTDECREMENT\ =\ 0x00;}
+\DoxyCodeLine{00319\ \ \ \ \ }
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ DISPLAYON\ =\ 0x04;}
+\DoxyCodeLine{00326\ \ \ \ \ }
+\DoxyCodeLine{00332\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ DISPLAYOFF\ =\ 0x00;}
+\DoxyCodeLine{00333\ \ \ \ \ }
+\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ CURSORON\ =\ 0x02;}
+\DoxyCodeLine{00340\ \ \ \ \ }
+\DoxyCodeLine{00346\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ CURSOROFF\ =\ 0x00;}
+\DoxyCodeLine{00347\ \ \ \ \ }
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ BLINKON\ =\ 0x01;}
+\DoxyCodeLine{00354\ \ \ \ \ }
+\DoxyCodeLine{00360\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ BLINKOFF\ =\ 0x00;}
+\DoxyCodeLine{00361\ \ \ \ \ }
+\DoxyCodeLine{00367\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ DISPLAYMOVE\ =\ 0x08;}
+\DoxyCodeLine{00368\ \ \ \ \ }
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ CURSORMOVE\ =\ 0x00;}
+\DoxyCodeLine{00375\ \ \ \ \ }
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ MOVERIGHT\ =\ 0x04;}
+\DoxyCodeLine{00382\ \ \ \ \ }
+\DoxyCodeLine{00388\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ MOVELEFT\ =\ 0x00;}
+\DoxyCodeLine{00389\ \ \ \ \ }
+\DoxyCodeLine{00395\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ MODE8BIT\ =\ 0x10;}
+\DoxyCodeLine{00396\ \ \ \ \ }
+\DoxyCodeLine{00402\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ MODE4BIT\ =\ 0x00;}
+\DoxyCodeLine{00403\ \ \ \ \ }
+\DoxyCodeLine{00409\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ MODE2LINE\ =\ 0x08;}
+\DoxyCodeLine{00410\ \ \ \ \ }
+\DoxyCodeLine{00416\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ MODE1LINE\ =\ 0x00;}
+\DoxyCodeLine{00417\ \ \ \ \ }
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ MODE5x10DOTS\ =\ 0x04;}
+\DoxyCodeLine{00424\ \ \ \ \ }
+\DoxyCodeLine{00430\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ MODE5x8DOTS\ =\ 0x00;}
+\DoxyCodeLine{00431\ \ \ \ \ }
+\DoxyCodeLine{00437\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ BACKLIGHT\ =\ 0x08;}
+\DoxyCodeLine{00438\ \ \ \ \ }
+\DoxyCodeLine{00444\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ NOBACKLIGHT\ =\ 0x00;}
+\DoxyCodeLine{00445\ \ \ \ \ }
+\DoxyCodeLine{00452\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ EN\ =\ 0b00000100;}
+\DoxyCodeLine{00453\ \ \ \ \ }
+\DoxyCodeLine{00459\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ RW\ =\ 0b00000010;}
+\DoxyCodeLine{00460\ \ \ \ \ }
+\DoxyCodeLine{00466\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint8\_t\ RS\ =\ 0b00000001;}
+\DoxyCodeLine{00467\ \};}
+\DoxyCodeLine{00468\ }
+\DoxyCodeLine{00469\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\_\_LCD\_HPP\_\_}}
+
+\end{DoxyCode}

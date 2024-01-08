@@ -1,0 +1,33 @@
+\chapter{Gyrocelery}
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{Gyrocelery@{Gyrocelery}}
+\label{md__r_e_a_d_m_e_autotoc_md41}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md41}%
+\hypertarget{md__r_e_a_d_m_e_autotoc_md42}{}\doxysection{\texorpdfstring{Aufgabenstellung\+:}{Aufgabenstellung:}}\label{md__r_e_a_d_m_e_autotoc_md42}
+Auslesen eines 6 Achsen-\/ Gyroskops bzw. Beschleunigungssensors, wie z.\+B. MPU 6050 oder LSM6\+DOX mit I2C
+
+
+\begin{DoxyItemize}
+\item Die Daten werden auf einem \doxylink{class_l_c_d}{LCD} angezeigt.
+\item Eine Kalibrierung des Sensors wird durchgeführt.
+\item Weiteres Verarbeiten der Daten, um z.\+B. eine aktuelle Geschwindigkeit oder eine relative Position zu bestimmen
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md43}{}\doxysection{\texorpdfstring{Hardware\+:}{Hardware:}}\label{md__r_e_a_d_m_e_autotoc_md43}
+
+\begin{DoxyItemize}
+\item Beschleunigungssensor z.\+B. MPU 6050 oder LSM6\+DOX
+\item ATmega32
+\item STK500
+\item \doxylink{class_display}{Display}
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md44}{}\doxysection{\texorpdfstring{Resources}{Resources}}\label{md__r_e_a_d_m_e_autotoc_md44}
+
+\begin{DoxyItemize}
+\item Sensor fusion\+: \href{https://www.youtube.com/watch?v=6qV3YjFppuc&list=PLn8PRpmsu08ryYoBpEKzoMOveSTyS-h4a&index=2}{\texttt{ https\+://www.\+youtube.\+com/watch?v=6q\+V3\+Yj\+Fppuc\&list=\+PLn8\+PRpmsu08ry\+Yo\+Bp\+EKzo\+MOve\+STy\+S-\/h4a\&index=2}}
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md45}{}\doxysection{\texorpdfstring{Display usage}{Display usage}}\label{md__r_e_a_d_m_e_autotoc_md45}
+The intended use of the display is as follows\+:
+
+\`{}\`{}\`{}\+C++ \#include \"{}../lib/lcd.\+hpp\"{}
+
+int main(void) \{ \doxylink{class_l_c_d}{LCD} display; Vector$<$char$>$ text; text \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} \"{}\+Guten Abend, mein Name ist Luca!\"{};
+
+while (true) \{ display.\+print\+Formatted(text); \+\_\+delay\+\_\+ms(1000); \}
+
+return 0; \} 
