@@ -1,3 +1,10 @@
+/**
+ *  \file vector.hpp
+ */
+
+#ifndef __LCD_HPP__
+#define __LCD_HPP__
+
 #define F_CPU 1000000UL
 
 #include <avr/io.h>
@@ -5,8 +12,8 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "i2c_driver/i2c_driver.h"
-#include "Vector_header_only/vector.hpp"
+#include "../i2c_driver/i2c_driver.h"
+#include "../Vector_header_only/vector.hpp"
 
 class LCD
 {
@@ -285,3 +292,5 @@ private:
 	const static inline uint8_t RW = 0b00000010;
 	const static inline uint8_t RS = 0b00000001;
 };
+
+#endif //__LCD_HPP__
