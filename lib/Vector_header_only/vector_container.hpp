@@ -80,7 +80,7 @@ public:
      *  \fn         deleteAll
      *  \brief      The method deletes all elements in the linked list
      */
-    void deleteAll(void) const
+    void deleteAll(void)
     {
         const uint8_t elementCount = length();
         for (uint8_t i = 0; i < elementCount; i++)

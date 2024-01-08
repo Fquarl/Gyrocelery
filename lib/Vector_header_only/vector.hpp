@@ -31,7 +31,7 @@ public:
     */
     ~Vector(void)
     {
-        VectorContainer::~VectorContainer();
+        VectorContainer<T>::~VectorContainer();
     }
 
     /**
