@@ -20,7 +20,7 @@ namespace HEAP_SETTINGS
       *  \brief      The constant specifies the total count of bytes on the SRAM
       *  \value      0x800
       */
-    constexpr uin16_t totalLenghtOfSRAM = 0x800;
+    constexpr uint16_t totalLenghtOfSRAM = 0x800;
 
     /**
      *  \var        maxHeapSize

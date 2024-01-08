@@ -32,7 +32,7 @@ public:
      *  \brief  Getter method for the instance stored
      *  \return Reference to the stored instance
      */
-    ContentType &getContent(void) const
+    ContentType& getContent(void)
     {
         return _content;
     }

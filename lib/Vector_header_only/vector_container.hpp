@@ -76,7 +76,7 @@ public:
         const uint8_t elementCount = length();
         for (uint8_t i = 0; i < elementCount; i++)
         {
-            VectorElement *elementPointer = elementAt(i);
+            VectorElement<ContentType> *elementPointer = elementAt(i);
             delete elementPointer;
         }
         _headOfStack = nullptr;
@@ -89,7 +89,7 @@ private:
      *  \param[in]  index passes the index of the target element
      *  \return     A pointer to the target element of template type
      */
-    VectorElement *elementAt(const uint8_t &index) const
+    VectorElement<ContentType> *elementAt(const uint8_t &index) const
     {
         const uint8_t itertaionsFromTop = length() - index - 1;
         VectorElement<ContentType> *elementPointer = _headOfStack;
@@ -104,7 +104,7 @@ private:
      *  \var    _headOfStack
      *  \brief  The member stores a pointer to the element on the top of the linked list
      */
-    VectorElement *_headOfStack;
+    VectorElement<ContentType> *_headOfStack;
 };
 
 #endif //__VECTOR_CONTAINER_HPP__
